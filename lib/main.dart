@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tasks_app_eraasoft/Features/login/presentation/views/login_screen.dart';
+import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,6 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    SizeConfig.init(context);
+    return MaterialApp(
+        home: LoginScreen(),
+    );
   }
 }
