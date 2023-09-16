@@ -15,6 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       drawer: Drawer(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
             TextButton(
                 onPressed: () {
                   logout();
-                  Navigator.of(context).pushNamed(LoginScreen.id);
+                  Navigator.of(context).pushNamedAndRemoveUntil(LoginScreen.id,(route) => false);
                 },
                 child: Text("Logout")),
           ],

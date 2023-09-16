@@ -37,84 +37,87 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 24 * SizeConfig.horizontalBlock,
                             vertical: 55 * SizeConfig.verticalBlock),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              "Welcome Back!",
-                              textAlign: TextAlign.center,
-                              style: AppStyles.LoginTextStyle1,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    "Login to access your assigned tasks and personal overview.",
-                                    style: AppStyles.LogintextStyle2,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 24,
-                            ),
-                            TextField(
-                              controller: email,
-                              decoration: InputDecoration(
-                                hintText: "Email",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                  borderSide: BorderSide(
-                                    color: AppColors.textFieldColor,
-                                    width: 1,
-                                  ),
-                                ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                "Welcome Back!",
+                                textAlign: TextAlign.center,
+                                style: AppStyles.LoginTextStyle1,
                               ),
-                            ),
-                            SizedBox(
-                              height: 24,
-                            ),
-                            TextField(
-                              controller: password,
-                              decoration: InputDecoration(
-                                hintText: "Password",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                  borderSide: BorderSide(
-                                    color: AppColors.textFieldColor,
-                                    width: 1,
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      "Login to access your assigned tasks and personal overview.",
+                                      style: AppStyles.LogintextStyle2,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 24,
+                              ),
+                              TextField(
+                                controller: email,
+                                decoration: InputDecoration(
+                                  hintText: "Email",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                    borderSide: BorderSide(
+                                      color: AppColors.textFieldColor,
+                                      width: 1,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Row(
-                              children: [
-                                Checkbox(value: false, onChanged: (value) {}),
-                                Text("Keep me logged in"),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 48 * SizeConfig.verticalBlock,
-                              child: TextButton(
-                                style: TextButton.styleFrom(
-                                  backgroundColor: Color(0xFF5A55CA),
-                                ),
-                                onPressed: () {
-                                  logincbt.login(
-                                    email: email.text,
-                                    password: password.text,
-                                  );
-                                  Navigator.of(context).pushNamed(HomeScreen.id);
-                                },
-                                child: Text("Login",
-                                    style: TextStyle(color: Colors.white)),
+                              SizedBox(
+                                height: 24,
                               ),
-                            )
-                          ],
+                              TextField(
+                                controller: password,
+                                decoration: InputDecoration(
+                                  hintText: "Password",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                    borderSide: BorderSide(
+                                      color: AppColors.textFieldColor,
+                                      width: 1,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Checkbox(value: false, onChanged: (value) {}),
+                                  Text("Keep me logged in"),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 48 * SizeConfig.verticalBlock,
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Color(0xFF5A55CA),
+                                  ),
+                                  onPressed: () {
+                                    logincbt.login(
+                                      email: email.text,
+                                      password: password.text,
+                                    );
+                                    Navigator.of(context)
+                                        .pushNamed(HomeScreen.id);
+                                  },
+                                  child: Text("Login",
+                                      style: TextStyle(color: Colors.white)),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
