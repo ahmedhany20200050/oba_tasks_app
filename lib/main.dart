@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       create: (context) => LoginCubitCubit(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const LoginScreen(),
+        initialRoute:  LoginScreen.id,
         routes: {
           LoginScreen.id: (context) => const LoginScreen(),
         },
