@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasks_app_eraasoft/Features/home/presentation/views/home_screen.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_state.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
@@ -107,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     email: email.text,
                                     password: password.text,
                                   );
-                                  // Navigator.of(context).pushNamed(routeName);
+                                  Navigator.of(context).pushNamed(HomeScreen.id);
                                 },
                                 child: Text("Login",
                                     style: TextStyle(color: Colors.white)),
