@@ -5,13 +5,12 @@ import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 import '../../../../core/app_styles.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
-  TextEditingController email= TextEditingController();
-  TextEditingController password= TextEditingController();
-
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController email = TextEditingController();
+    TextEditingController password = TextEditingController();
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -79,13 +78,13 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 48*SizeConfig.verticalBlock,
+                height: 48 * SizeConfig.verticalBlock,
                 child: TextButton(
-                  style:TextButton.styleFrom(
-                    backgroundColor:  Color(0xFF5A55CA),
+                  style: TextButton.styleFrom(
+                    backgroundColor: Color(0xFF5A55CA),
                   ),
                   onPressed: () {},
-                  child: Text("Login",style: TextStyle(color: Colors.white)),
+                  child: Text("Login", style: TextStyle(color: Colors.white)),
                 ),
               )
             ],
