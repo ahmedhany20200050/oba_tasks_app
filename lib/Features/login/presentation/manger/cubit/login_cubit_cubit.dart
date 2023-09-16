@@ -4,13 +4,15 @@ import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/logi
 import 'package:tasks_app_eraasoft/core/helpers/api.dart';
 import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 
+late String token;
+
 class LoginCubitCubit extends Cubit<LoginCubitState> {
   LoginCubitCubit() : super(LoginCubitInitial());
 
-  login({required String email, required String password}) async {
+  Future login({required String email, required String password}) async {
     emit(LoginCubitLoading());
     try {
-      await Api().post(
+      var data = await Api().post(
         url: EndPoints.baseUrl + EndPoints.loginEndpoint,
         body: {
           'email': email,
@@ -18,11 +20,10 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
         },
       );
       emit(LoginCubitSuccess());
-      print("success");
+      token = data['data']['token'];
+      print(token);
     } on Exception catch (e) {
-
       emit(LoginCubitFailure(errmsg: e.toString()));
-
     }
   }
 }

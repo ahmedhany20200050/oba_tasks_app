@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/views/login_screen.dart';
 import 'package:tasks_app_eraasoft/core/helpers/api.dart';
 import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
@@ -12,6 +13,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Future logout(context) async {
+    try {
+      // ignore: missing_required_param
+      await Api().post(
+        url: EndPoints.baseUrl + EndPoints.logoutEndpoint,
+        token: token,
+      );
+      print('logged out');
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(LoginScreen.id, (route) => false);
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             TextButton(
                 onPressed: () {
-                  logout();
-                  Navigator.of(context).pushNamedAndRemoveUntil(LoginScreen.id,(route) => false);
+                  logout(context);
                 },
                 child: Text("Logout")),
           ],
@@ -31,16 +46,5 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Container(),
     );
-  }
-
-  logout() async {
-    try {
-      // ignore: missing_required_param
-      await Api().post(
-        url: EndPoints.baseUrl + EndPoints.logoutEndpoint,
-      );
-    } on Exception catch (e) {
-      print(e.toString());
-    }
   }
 }
