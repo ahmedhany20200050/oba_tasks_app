@@ -16,9 +16,12 @@ class MyApp extends StatelessWidget {
     SizeConfig.init(context);
     return BlocProvider(
       create: (context) => LoginCubitCubit(),
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
+        home: const LoginScreen(),
+        routes: {
+          LoginScreen.id: (context) => const LoginScreen(),
+        },
       ),
     );
   }
