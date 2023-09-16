@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/views/login_screen.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
@@ -12,9 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return BlocProvider(
+      create: (context) => LoginCubitCubit(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: LoginScreen(),
+      ),
     );
   }
 }
