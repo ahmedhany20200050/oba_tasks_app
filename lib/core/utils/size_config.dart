@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/material.dart';
 
 class SizeConfig {
   static const double designWidth = 360;
