@@ -5,9 +5,9 @@ import 'package:http/http.dart' as http;
 class Api {
   Future<dynamic> get({required String url, @required String? token}) async {
     Map<String, String> headers = {};
-    headers.addAll({
-      'Content-Type': 'application/x-www-form-urlencoded',
-    });
+    // headers.addAll({
+    //   'Content-Type': 'application/json',
+    // });
     if (token != null) {
       headers.addAll({
         'Authorization': 'Bearer $token',
@@ -27,9 +27,9 @@ class Api {
       @required dynamic body,
       @required String? token}) async {
     Map<String, String> headers = {};
-    headers.addAll({
-      'Content-Type': 'application/x-www-form-urlencoded',
-    });
+    // headers.addAll({
+    //   'Content-Type': 'application/json',
+    // });
 
     if (token != null) {
       headers.addAll({
@@ -56,9 +56,9 @@ class Api {
       @required dynamic body,
       @required String? token}) async {
     Map<String, String> headers = {};
-    headers.addAll({
-      'Content-Type': 'application/x-www-form-urlencoded',
-    });
+    // headers.addAll({
+    //   'Content-Type': 'application/json',
+    // });
     if (token != null) {
       headers.addAll({
         'Authorization': 'Bearer $token',
