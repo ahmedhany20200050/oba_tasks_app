@@ -20,11 +20,12 @@ class _HomeScreenState extends State<HomeScreen> {
         url: EndPoints.baseUrl + EndPoints.logoutEndpoint,
         token: token,
       );
-      print('logged out');
+      // print('logged out');
       Navigator.of(context)
           .pushNamedAndRemoveUntil(LoginScreen.id, (route) => false);
+    // ignore: unused_catch_clause
     } on Exception catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   logout(context);
                 },
-                child: Text("Logout")),
+                child:const Text("Logout")),
           ],
         ),
       ),

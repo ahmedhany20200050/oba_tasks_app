@@ -21,7 +21,7 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
       );
       emit(LoginCubitSuccess());
       token = data['data']['token'];
-      print(token);
+      // print(token);
     } on Exception catch (e) {
       emit(LoginCubitFailure(errmsg: e.toString()));
     }

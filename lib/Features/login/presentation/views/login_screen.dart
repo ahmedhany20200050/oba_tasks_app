@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     textAlign: TextAlign.center,
                                     style: AppStyles.LoginTextStyle1,
                                   ),
-                                  SizedBox(
+                               const   SizedBox(
                                     height: 20,
                                   ),
                                   Row(
@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                const  SizedBox(
                                     height: 24,
                                   ),
                                   TextFormField(
@@ -86,14 +86,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                       hintText: "Email",
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(4),
-                                        borderSide: BorderSide(
+                                        borderSide:const BorderSide(
                                           color: AppColors.textFieldColor,
                                           width: 1,
                                         ),
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                             const     SizedBox(
                                     height: 24,
                                   ),
                                   TextFormField(
@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       hintText: "Password",
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(4),
-                                        borderSide: BorderSide(
+                                        borderSide:const BorderSide(
                                           color: AppColors.textFieldColor,
                                           width: 1,
                                         ),
@@ -119,14 +119,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                     children: [
                                       Checkbox(
                                           value: false, onChanged: (value) {}),
-                                      Text("Keep me logged in"),
+                                   const   Text("Keep me logged in"),
                                     ],
                                   ),
                                   SizedBox(
                                     height: 48 * SizeConfig.verticalBlock,
                                     child: TextButton(
                                       style: TextButton.styleFrom(
-                                        backgroundColor: Color(0xFF5A55CA),
+                                        backgroundColor:const Color(0xFF5A55CA),
                                       ),
                                       onPressed: () async {
                                         if (formkey.currentState!.validate()) {
@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           );
                                         }
                                       },
-                                      child: Text("Login",
+                                      child:const Text("Login",
                                           style:
                                               TextStyle(color: Colors.white)),
                                     ),
