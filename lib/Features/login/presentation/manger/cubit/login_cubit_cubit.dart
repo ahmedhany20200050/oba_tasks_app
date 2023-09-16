@@ -20,8 +20,9 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
       emit(LoginCubitSuccess());
       print("success");
     } on Exception catch (e) {
-      emit(LoginCubitFailure());
-      print("failure");
+
+      emit(LoginCubitFailure(errmsg: e.toString()));
+
     }
   }
 }
