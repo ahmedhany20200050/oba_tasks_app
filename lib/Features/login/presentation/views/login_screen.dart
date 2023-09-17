@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasks_app_eraasoft/Features/departmentForms/presentation/views/add_department.dart';
 import 'package:tasks_app_eraasoft/Features/home/presentation/views/home_screen.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_state.dart';
@@ -26,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocConsumer<LoginCubitCubit, LoginCubitState>(
       listener: (context, state) {
         if (state is LoginCubitSuccess) {
-          Navigator.of(context).pushNamed(HomeScreen.id);
+          Navigator.of(context).pushNamed(AddDepartmentScreen.id);
         }
       },
       builder: (context, state) {
@@ -54,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Text(
                                     "Welcome Back!",
                                     textAlign: TextAlign.center,
-                                    style: AppStyles.LoginTextStyle1,
+                                    style: AppStyles.titleStyle,
                                   ),
                                const   SizedBox(
                                     height: 20,
@@ -64,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       Expanded(
                                         child: Text(
                                           "Login to access your assigned tasks and personal overview.",
-                                          style: AppStyles.LogintextStyle2,
+                                          style: AppStyles.descriptionStyle,
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -136,9 +137,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                           );
                                         }
                                       },
-                                      child:const Text("Login",
-                                          style:
-                                              TextStyle(color: Colors.white)),
+                                      child: Text("Login",
+                                          textAlign: TextAlign.center,
+                                          style: AppStyles.buttonTextStyle,
+                                    ),
                                     ),
                                   )
                                 ],
