@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_state.dart';
-import 'package:tasks_app_eraasoft/Features/new_department/presentation/views/screen/new_department_screen.dart';
+import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/update_department_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 import '../../../../core/app_styles.dart';
@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
       listener: (context, state) {
         if (state is LoginCubitSuccess) {
 
-          Navigator.of(context).pushNamed(NewDepartmentScreen.id,);
+          Navigator.of(context).pushNamed(UpdateDepartmentScreen.id,);
         }
       },
       builder: (context, state) {

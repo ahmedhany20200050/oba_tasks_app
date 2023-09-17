@@ -9,7 +9,7 @@ class AddDepartmentCubit extends Cubit<AddDepartmentStates> {
 
   static AddDepartmentCubit get(context) => BlocProvider.of(context);
 
-  Future addDepartment({required String departmentName}) async {
+  void addDepartment({required String departmentName}) async {
     try {
       emit(AddDepartmentLoading());
       var data = await Api.post(

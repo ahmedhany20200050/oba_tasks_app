@@ -5,6 +5,8 @@ import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/logi
 import 'package:tasks_app_eraasoft/Features/login/presentation/views/login_screen.dart';
 import 'package:tasks_app_eraasoft/Features/new_department/presentation/manager/cubits/add_department/add_department_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/new_department/presentation/views/screen/new_department_screen.dart';
+import 'package:tasks_app_eraasoft/Features/update_department/presentation/manager/cubits/update_department/update_department_cubit.dart';
+import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/update_department_screen.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
 void main() {
@@ -25,16 +27,18 @@ class MyApp extends StatelessWidget {
         BlocProvider<AddDepartmentCubit>(
           create: (context) => AddDepartmentCubit(),
         ),
+        BlocProvider<UpdateDepartmentCubit>(
+            create: (context) => UpdateDepartmentCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute:  LoginScreen.id,
+        initialRoute: LoginScreen.id,
         routes: {
           LoginScreen.id: (context) => const LoginScreen(),
           HomeScreen.id: (context) => const HomeScreen(),
           NewDepartmentScreen.id: (context) => const NewDepartmentScreen(),
+          // UpdateDepartmentScreen.id:(context) => const UpdateDepartmentScreen()
         },
-
       ),
     );
   }
