@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_eraasoft/Features/departmentForms/presentation/views/add_department.dart';
+import 'package:tasks_app_eraasoft/Features/departmentForms/presentation/views/update_department.dart';
 import 'package:tasks_app_eraasoft/Features/home/presentation/views/home_screen.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/views/login_screen.dart';
@@ -20,11 +21,12 @@ class MyApp extends StatelessWidget {
       create: (context) => LoginCubitCubit(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute:  AddDepartmentScreen.id,
+        initialRoute:  LoginScreen.id,
         routes: {
           LoginScreen.id: (context) => const LoginScreen(),
           HomeScreen.id: (context) => const HomeScreen(),
           AddDepartmentScreen.id:(context)=>const AddDepartmentScreen(),
+          UpdateDepartmentScreen.id:(context)=>const UpdateDepartmentScreen(),
         },
 
       ),

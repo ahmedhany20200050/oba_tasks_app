@@ -1,7 +1,9 @@
 // ignore_for_file: body_might_complete_normally_nullable
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasks_app_eraasoft/Features/departmentForms/presentation/views/add_department.dart';
 import 'package:tasks_app_eraasoft/Features/home/presentation/views/home_screen.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
@@ -22,12 +24,21 @@ class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> formkey = GlobalKey();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  bool keepMeLoggedIn= true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    var logincbt = BlocProvider.of<LoginCubitCubit>(context);
+    logincbt.goDirectlyToNextScreen();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubitCubit, LoginCubitState>(
       listener: (context, state) {
         if (state is LoginCubitSuccess) {
-          Navigator.of(context).pushNamed(AddDepartmentScreen.id);
+          Navigator.of(context).pushNamed(HomeScreen.id);
         }
       },
       builder: (context, state) {
@@ -119,7 +130,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Row(
                                     children: [
                                       Checkbox(
-                                          value: false, onChanged: (value) {}),
+                                          value: keepMeLoggedIn, onChanged: (value) {
+                                            setState(() {
+                                              keepMeLoggedIn=value!;
+                                            });
+
+                                      }),
                                    const   Text("Keep me logged in"),
                                     ],
                                   ),
@@ -135,6 +151,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                             email: email.text,
                                             password: password.text,
                                           );
+                                          var storage=await SharedPreferences.getInstance();
+                                          await storage.setBool("keepMeLoggedIn", keepMeLoggedIn);
                                         }
                                       },
                                       child: Text("Login",
