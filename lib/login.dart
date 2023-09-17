@@ -5,7 +5,7 @@ import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 
 
 login({required String email, required String password}) async {
-  await Api().post(
+  await Api.post(
     url: EndPoints.baseUrl + EndPoints.loginEndpoint,
     body: {
       'email': email,
@@ -15,7 +15,7 @@ login({required String email, required String password}) async {
 }
 
 logout() async {
-  await Api().post(
+  await Api.post(
     url: EndPoints.baseUrl + EndPoints.logoutEndpoint,
   );
 }

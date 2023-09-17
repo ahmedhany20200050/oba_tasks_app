@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
-  Future<dynamic> get({required String url, @required String? token}) async {
+  static Future<dynamic> get(
+      {required String url, @required String? token}) async {
     Map<String, String> headers = {};
     // headers.addAll({
     //   'Content-Type': 'application/json',
@@ -22,7 +23,7 @@ class Api {
     }
   }
 
-  Future<dynamic> post(
+  static Future<dynamic> post(
       {required String url,
       @required dynamic body,
       @required String? token}) async {
@@ -42,16 +43,15 @@ class Api {
       body: body,
       headers: headers,
     );
-    if (response.statusCode == 200) {
-      Map<String, dynamic> data = jsonDecode(response.body);
+    Map<String, dynamic> data = jsonDecode(response.body);
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       return data;
     } else {
-      throw Exception(
-          'There is a issue with the status code ${response.statusCode}');
+      throw Exception('${data['message']}');
     }
   }
 
-  Future<dynamic> put(
+  static Future<dynamic> put(
       {required String url,
       @required dynamic body,
       @required String? token}) async {

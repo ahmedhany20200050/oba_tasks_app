@@ -12,7 +12,7 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
   Future login({required String email, required String password}) async {
     emit(LoginCubitLoading());
     try {
-      var data = await Api().post(
+      var data = await Api.post(
         url: EndPoints.baseUrl + EndPoints.loginEndpoint,
         body: {
           'email': email,
@@ -21,7 +21,7 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
       );
       emit(LoginCubitSuccess());
       token = data['data']['token'];
-      // print(token);
+      print(token);
     } on Exception catch (e) {
       emit(LoginCubitFailure(errmsg: e.toString()));
     }

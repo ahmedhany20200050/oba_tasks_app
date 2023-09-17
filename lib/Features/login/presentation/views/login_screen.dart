@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasks_app_eraasoft/Features/home/presentation/views/home_screen.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_state.dart';
+import 'package:tasks_app_eraasoft/Features/new_department/presentation/views/screen/new_department_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 import '../../../../core/app_styles.dart';
@@ -26,7 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocConsumer<LoginCubitCubit, LoginCubitState>(
       listener: (context, state) {
         if (state is LoginCubitSuccess) {
-          Navigator.of(context).pushNamed(HomeScreen.id);
+
+          Navigator.of(context).pushNamed(NewDepartmentScreen.id,);
         }
       },
       builder: (context, state) {
@@ -54,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Text(
                                     "Welcome Back!",
                                     textAlign: TextAlign.center,
-                                    style: AppStyles.LoginTextStyle1,
+                                    style: AppStyles.loginTextStyle1,
                                   ),
                                const   SizedBox(
                                     height: 20,
@@ -87,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(4),
                                         borderSide:const BorderSide(
-                                          color: AppColors.textFieldColor,
+                                          color: AppColors.color0xFF091E4A,
                                           width: 1,
                                         ),
                                       ),
@@ -109,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(4),
                                         borderSide:const BorderSide(
-                                          color: AppColors.textFieldColor,
+                                          color: AppColors.color0xFF091E4A,
                                           width: 1,
                                         ),
                                       ),

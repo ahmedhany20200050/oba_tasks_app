@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future logout(context) async {
     try {
       // ignore: missing_required_param
-      await Api().post(
+      await Api.post(
         url: EndPoints.baseUrl + EndPoints.logoutEndpoint,
         token: token,
       );

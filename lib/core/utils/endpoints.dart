@@ -1,5 +1,6 @@
 class EndPoints {
-  static String baseUrl = 'https://tasksapp.integration25.com/api';
-  static String loginEndpoint = '/auth/login';
-  static String logoutEndpoint = '/auth/logout';
+  static const String baseUrl = 'https://tasksapp.integration25.com/api';
+  static const String loginEndpoint = '/auth/login';
+  static const String logoutEndpoint = '/auth/logout';
+  static const String addDepartmentEndpoint = '/department/store';
 }
