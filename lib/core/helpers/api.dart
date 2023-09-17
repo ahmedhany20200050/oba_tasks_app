@@ -14,7 +14,7 @@ class Api {
       });
     }
     http.Response response = await http.get(Uri.parse(url), headers: headers);
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       return jsonDecode(response.body);
     } else {
       throw Exception(
@@ -42,7 +42,7 @@ class Api {
       body: body,
       headers: headers,
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       Map<String, dynamic> data = jsonDecode(response.body);
       return data;
     } else {
@@ -71,7 +71,7 @@ class Api {
       headers: headers,
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       Map<String, dynamic> data = jsonDecode(response.body);
       return data;
     } else {
