@@ -5,13 +5,18 @@ import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String hintText;
-  final TextEditingController controller;
-  final String? Function(String?) validator;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final Widget? suffixIcon;
+  final bool readOnly;
+  final bool obscureText;
   const CustomTextFormField(
       {super.key,
       required this.hintText,
-      required this.controller,
-      required this.validator});
+      this.controller,
+      this.validator,
+      this.suffixIcon,
+      this.readOnly = false,this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +33,14 @@ class CustomTextFormField extends StatelessWidget {
         ),
       ),
       child: TextFormField(
+        obscureText: obscureText,
+        readOnly: readOnly,
         onTapOutside: (_) => FocusScope.of(context).unfocus(),
         controller: controller,
         validator: validator,
+        textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
+            suffixIcon: suffixIcon,
             border: InputBorder.none,
             hintText: hintText,
             hintStyle: AppStyles

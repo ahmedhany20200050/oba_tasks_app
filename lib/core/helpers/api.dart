@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
-  static Future<dynamic> get(
+  static Future<Map<String, dynamic>> get(
       {required String url, @required String? token}) async {
     Map<String, String> headers = {};
     // headers.addAll({
@@ -16,7 +16,7 @@ class Api {
     }
     http.Response response = await http.get(Uri.parse(url), headers: headers);
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      return jsonDecode(response.body) as Map<String, dynamic>;
     } else {
       throw Exception(
           'There is a issue with the status code ${response.statusCode}');

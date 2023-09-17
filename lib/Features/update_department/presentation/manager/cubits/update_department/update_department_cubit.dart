@@ -10,11 +10,11 @@ class UpdateDepartmentCubit extends Cubit<UpdateDepartmentStates> {
   static UpdateDepartmentCubit get(context) => BlocProvider.of(context);
 
   void updateDepartment(
-      {required String departmentName, required String managerId}) async {
+      {required String departmentName, required String managerId, required departmentId}) async {
     try {
       emit(UpdateDepartmentLoading());
       var data = await Api.post(
-          url: EndPoints.baseUrl + EndPoints.updateDepartmentEndPoint,
+          url: "${EndPoints.baseUrl}${EndPoints.updateDepartmentEndPoint}/$departmentId",
           body: {'name': departmentName, 'manager_id': managerId},
           token: token);
       emit(UpdateDepartmentSuccess(successMessage: data['message']));

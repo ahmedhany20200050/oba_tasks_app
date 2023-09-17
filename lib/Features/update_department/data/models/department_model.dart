@@ -1,9 +1,9 @@
 import 'package:tasks_app_eraasoft/Features/update_department/data/models/user_model.dart';
 
 class DepartmentModel {
-  final String id;
+  final int id;
   final String name;
-  final UserModel userModel;
+  final UserModel? userModel;
 
   DepartmentModel(
       {required this.id, required this.name, required this.userModel});
@@ -11,7 +11,7 @@ class DepartmentModel {
     return DepartmentModel(
       id: json['id'],
       name: json['name'],
-      userModel: UserModel.fromJson(json['manager']),
+      userModel: json['manager']!=null?UserModel.fromJson(json['manager']):null,
     );
   }
 }

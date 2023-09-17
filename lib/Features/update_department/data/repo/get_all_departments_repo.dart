@@ -4,15 +4,14 @@ import 'package:tasks_app_eraasoft/core/helpers/api.dart';
 import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 
 class GetAllDepartmentsRepo {
-  static Future<List<DepartmentModel>> getAllDepartments() async{
-    var data = await Api.get(
+  static Future<List<DepartmentModel>> getAllDepartments() async {
+    Map<String,dynamic> data = await Api.get(
         url: EndPoints.baseUrl + EndPoints.getAllDepartmentsEndpoint,
-        token: token
-      );
-    List<DepartmentModel> departments = [];
-      data['data'].forEach((element) {
-        departments.add(DepartmentModel.fromJson(element));
-      });
-      return departments;
+        token: token);
+    print(data);
+    return data['data']
+        .map((department) => DepartmentModel.fromJson(department))
+        .toList()
+        .cast<DepartmentModel>();
   }
 }

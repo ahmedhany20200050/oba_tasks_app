@@ -3,7 +3,7 @@ class UserModel {
   final String userCode;
   final String name;
   final String email;
-  final String phone;
+  final int phone;
   final String status;
   final String userType;
 

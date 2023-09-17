@@ -29,6 +29,13 @@ class AppStyles {
     fontSize: 14 * SizeConfig.textRatio,
     fontWeight: FontWeight.w500,
   );
+  static final TextStyle
+      color0xFF7B808AFontSize8FontWeightW400Height16AfterTheDecimalPointLetterSpacing44AfterTheDecimalPoint =
+      GoogleFonts.roboto(
+    color: AppColors.color0xFF7B808A,
+    fontSize: 8*SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
   static TextStyle LogintextStyle2 = TextStyle(
     color: const Color(0xFF7B808A),
     fontSize: 16 * SizeConfig.textRatio,

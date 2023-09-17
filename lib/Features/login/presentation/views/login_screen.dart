@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_state.dart';
+import 'package:tasks_app_eraasoft/Features/new_department/presentation/views/screen/new_department_screen.dart';
+import 'package:tasks_app_eraasoft/Features/new_user/presentation/views/new_user_screen.dart';
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/update_department_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
@@ -26,8 +28,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocConsumer<LoginCubitCubit, LoginCubitState>(
       listener: (context, state) {
         if (state is LoginCubitSuccess) {
-
-          Navigator.of(context).pushNamed(UpdateDepartmentScreen.id,);
+          print("What");
+          Navigator.of(context).pushNamed(
+            NewUserScreen.id,
+          );
         }
       },
       builder: (context, state) {
@@ -57,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     textAlign: TextAlign.center,
                                     style: AppStyles.loginTextStyle1,
                                   ),
-                               const   SizedBox(
+                                  const SizedBox(
                                     height: 20,
                                   ),
                                   Row(
@@ -71,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ],
                                   ),
-                                const  SizedBox(
+                                  const SizedBox(
                                     height: 24,
                                   ),
                                   TextFormField(
@@ -87,14 +91,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                       hintText: "Email",
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(4),
-                                        borderSide:const BorderSide(
+                                        borderSide: const BorderSide(
                                           color: AppColors.color0xFF091E4A,
                                           width: 1,
                                         ),
                                       ),
                                     ),
                                   ),
-                             const     SizedBox(
+                                  const SizedBox(
                                     height: 24,
                                   ),
                                   TextFormField(
@@ -109,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       hintText: "Password",
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(4),
-                                        borderSide:const BorderSide(
+                                        borderSide: const BorderSide(
                                           color: AppColors.color0xFF091E4A,
                                           width: 1,
                                         ),
@@ -120,14 +124,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                     children: [
                                       Checkbox(
                                           value: false, onChanged: (value) {}),
-                                   const   Text("Keep me logged in"),
+                                      const Text("Keep me logged in"),
                                     ],
                                   ),
                                   SizedBox(
                                     height: 48 * SizeConfig.verticalBlock,
                                     child: TextButton(
                                       style: TextButton.styleFrom(
-                                        backgroundColor:const Color(0xFF5A55CA),
+                                        backgroundColor:
+                                            const Color(0xFF5A55CA),
                                       ),
                                       onPressed: () async {
                                         if (formkey.currentState!.validate()) {
@@ -137,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           );
                                         }
                                       },
-                                      child:const Text("Login",
+                                      child: const Text("Login",
                                           style:
                                               TextStyle(color: Colors.white)),
                                     ),
