@@ -11,7 +11,7 @@ import 'package:tasks_app_eraasoft/core/widgets/custom_text_form_field.dart';
 
 class NewUserScreen extends StatefulWidget {
   const NewUserScreen({super.key});
-  static const id = 'NewUserScreen';
+  static const id = 'UpdateUserScreen';
 
   @override
   State<NewUserScreen> createState() => _NewUserScreenState();
@@ -23,9 +23,8 @@ class _NewUserScreenState extends State<NewUserScreen> with SnackBarViewer {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordContoller = TextEditingController();
+  final TextEditingController _departmentIdController = TextEditingController();
   final TextEditingController _radioButtonController = TextEditingController();
-  // final TextEditingController _departmentNameController =
-  //     TextEditingController();
   @override
   void dispose() {
     _nameController.dispose();
@@ -33,9 +32,10 @@ class _NewUserScreenState extends State<NewUserScreen> with SnackBarViewer {
     _phoneController.dispose();
     _passwordContoller.dispose();
     _radioButtonController.dispose();
-    
+    _departmentIdController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

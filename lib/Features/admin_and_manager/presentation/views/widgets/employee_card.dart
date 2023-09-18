@@ -32,63 +32,61 @@ class EmployeeCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
         ),
       ),
-      child: Container(
-        // color: Colors.green,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 1.55 * SizeConfig.horizontalBlock,
-              height: 60 * SizeConfig.verticalBlock,
-              color: AppColors.color0xFF5A55CA,
-            ),
-            SizedBox(
-              width: 4.45 * SizeConfig.horizontalBlock,
-            ),
-            Container(
-                padding:
-                    EdgeInsets.only(right: 11 * SizeConfig.horizontalBlock),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      employeeName,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 1.55 * SizeConfig.horizontalBlock,
+            height: 60 * SizeConfig.verticalBlock,
+            color: AppColors.color0xFF5A55CA,
+          ),
+          SizedBox(
+            width: 4.45 * SizeConfig.horizontalBlock,
+          ),
+          Container(
+              padding: EdgeInsets.only(right: 11 * SizeConfig.horizontalBlock),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    employeeName,
+                    style: AppStyles
+                        .color0xFF091E4AFontSize16FontWeightW700Height05AfterTheDecimalPointLetterSpacing44AfterTheDecimalPoint,
+                  ),
+                  SizedBox(
+                    height: 7 * SizeConfig.verticalBlock,
+                  ),
+                  Container(
+                    decoration: ShapeDecoration(
+                      color: AppColors.color0x195A55CA,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(2)),
+                    ),
+                    width: 35 * SizeConfig.horizontalBlock,
+                    height: 10 * SizeConfig.verticalBlock,
+                    alignment: Alignment.center,
+                    child: Text(
+                      "ADMIN",
                       style: AppStyles
-                          .color0xFF091E4AFontSize16FontWeightW700Height05AfterTheDecimalPointLetterSpacing44AfterTheDecimalPoint,
+                          .color0xFF5A55CAFontSize8FontWeightW400Height16AfterTheDecimalPointLetterSpacing44AfterTheDecicmalPoint,
                     ),
-                    SizedBox(
-                      height: 7 * SizeConfig.verticalBlock,
-                    ),
-                    Container(
-                      decoration: ShapeDecoration(
-                        color: AppColors.color0x195A55CA,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(2)),
-                      ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "ADMIN",
-                        style: AppStyles
-                            .color0xFF5A55CAFontSize8FontWeightW400Height16AfterTheDecimalPointLetterSpacing44AfterTheDecicmalPoint,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 4 * SizeConfig.verticalBlock,
-                    ),
-                    ContactInfo(
-                        contactText: userEmail,
-                        contactIconAsset: AppAssets.mailIcon),
-                    ContactInfo(
-                        contactText: userPhone,
-                        contactIconAsset: AppAssets.phoneIcon)
-                  ],
-                ))
-          ],
-        ),
+                  ),
+                  SizedBox(
+                    height: 4 * SizeConfig.verticalBlock,
+                  ),
+                  ContactInfo(
+                      contactText: userEmail,
+                      contactIconAsset: AppAssets.mailIcon),
+                  ContactInfo(
+                      contactText: userPhone,
+                      contactIconAsset: AppAssets.phoneIcon)
+                ],
+              ))
+        ],
       ),
     );
   }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_app_eraasoft/Features/admin_and_manager/presentation/views/widgets/department_section.dart';
+import 'package:tasks_app_eraasoft/Features/new_department/presentation/views/screen/new_department_screen.dart';
+import 'package:tasks_app_eraasoft/Features/new_user/presentation/views/new_user_screen.dart';
+import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/update_department_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/app_styles.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
@@ -26,7 +29,44 @@ class _AdminAndManagerScreenState extends State<AdminAndManagerScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      drawer: const Drawer(),
+      drawer: Drawer(
+        child: DrawerHeader(
+          child: ListView(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, NewDepartmentScreen.id);
+                },
+                child: const Text("New Department"),
+              ),
+              SizedBox(
+                height: 20 * SizeConfig.verticalBlock,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, UpdateDepartmentScreen.id);
+                },
+                child: const Text("Update Department"),
+              ),
+              SizedBox(
+                height: 20 * SizeConfig.verticalBlock,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, NewUserScreen.id);
+                },
+                child: const Text("New User"),
+              ),
+              // GestureDetector(
+              //   onTap: () {
+              //     Navigator.pushNamed(context, UpdateUserScreen.id);
+              //   },
+              //   child: const Text("Update User"),
+              // ),
+            ],
+          ),
+        ),
+      ),
       body: Container(
           padding: EdgeInsets.zero,
           margin: EdgeInsets.only(
@@ -93,7 +133,19 @@ class _AdminAndManagerScreenState extends State<AdminAndManagerScreen>
                             bottom: 20 * SizeConfig.verticalBlock),
                         child:
                             const DepartmentSection(departmentName: "Flutter"),
-                      )
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            bottom: 20 * SizeConfig.verticalBlock),
+                        child:
+                            const DepartmentSection(departmentName: "Flutter"),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            bottom: 20 * SizeConfig.verticalBlock),
+                        child:
+                            const DepartmentSection(departmentName: "Flutter"),
+                      ),
                     ],
                   ),
                   const Center(child: Text("SUIIIII")),

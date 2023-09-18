@@ -56,7 +56,7 @@ class DepartmentSection extends StatelessWidget {
                   maxCrossAxisExtent: 150 * SizeConfig.verticalBlock,
                   crossAxisSpacing: 10 * SizeConfig.horizontalBlock,
                   mainAxisSpacing: 10 * SizeConfig.verticalBlock,
-                  mainAxisExtent: 81 * SizeConfig.verticalBlock),
+                  mainAxisExtent: 83 * SizeConfig.verticalBlock),
               children: const [
                 EmployeeCard(
                     employeeName: "Basel",

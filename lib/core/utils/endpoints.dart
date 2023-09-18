@@ -5,4 +5,5 @@ class EndPoints {
   static const String addDepartmentEndpoint = '/department/store';
   static const String updateDepartmentEndPoint = '/department/update';
   static const String getAllDepartmentsEndpoint = '/department/index';
+  static const String addUserEndpoint = '/user/store';
 }

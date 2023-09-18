@@ -19,7 +19,10 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
           'password': password,
         },
       );
-      emit(LoginCubitSuccess());
+      emit(LoginCubitSuccess(
+          email: data['data']['email'],
+          userName: data['data']['username'],
+          userType: data['data']['user_type']));
       token = data['data']['token'];
       print(token);
     } on Exception catch (e) {
