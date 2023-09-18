@@ -33,6 +33,60 @@ class AppStyles {
       color0xFF7B808AFontSize8FontWeightW400Height16AfterTheDecimalPointLetterSpacing44AfterTheDecimalPoint =
       GoogleFonts.roboto(
     color: AppColors.color0xFF7B808A,
+    fontSize: 8 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle
+      color0xFF091E4AFontSize16FontWeightW700Height07AfterTheDecimalPointLetterSpacing25AfterTheDecimalPoint =
+      GoogleFonts.roboto(
+    color: AppColors.color0xFF091E4A,
+    fontSize: 16 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w700,
+  );
+  static final TextStyle
+      color0xFF7B808AFontSize12FontWeightW400Height17AfterTheDecimalPointLetterSpacing15AfterTheDecimalPoint =
+      GoogleFonts.roboto(
+    color: AppColors.color0xFF7B808A,
+    fontSize: 12 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle
+      color0xFF5A55CAFontSize12FontWeightW700Height08AfterTheDecimalPoint25AfterTheDecimalPoint =
+      GoogleFonts.roboto(
+    color: AppColors.color0xFF5A55CA,
+    fontSize: 12 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w700,
+  );
+  static final TextStyle
+      color0xFF091E4AFontSize12FontWeightW700Height08AfterTheDecimalPoint25AfterTheDecimalPoint =
+      GoogleFonts.roboto(
+    color: AppColors.color0xFF091E4A,
+    fontSize: 12 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w700,
+  );
+  static final TextStyle
+      color0xFF091E4AFontSize12FontWeightW400Height17AfterTheDecimalPointLetterSpacing15AfterTheDecimalPoint =
+      GoogleFonts.roboto(
+    color: AppColors.color0xFF091E4A,
+    fontSize: 12 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle
+      color0xFF091E4AFontSize16FontWeightW700Height05AfterTheDecimalPointLetterSpacing44AfterTheDecimalPoint =
+      GoogleFonts.roboto(
+    color: AppColors.color0xFF091E4A,
+    fontSize: 16 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w700,
+  );
+  static final TextStyle
+      color0xFF5A55CAFontSize8FontWeightW400Height16AfterTheDecimalPointLetterSpacing44AfterTheDecicmalPoint =
+      GoogleFonts.roboto(
+    color: AppColors.color0xFF5A55CA,
+    fontSize: 8 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle color0xFF091E4AFontSize8FontWeightW400Height20AfterTheDecimalPointLetterSpacing44AfterTheDecimalPoint = GoogleFonts.roboto(
+    color: AppColors.color0xFF091E4A,
     fontSize: 8*SizeConfig.textRatio,
     fontWeight: FontWeight.w400,
   );

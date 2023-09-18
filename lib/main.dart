@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasks_app_eraasoft/Features/admin_and_manager/presentation/views/admin_and_manager_screen.dart';
 import 'package:tasks_app_eraasoft/Features/home/presentation/views/home_screen.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/views/login_screen.dart';
@@ -10,6 +11,7 @@ import 'package:tasks_app_eraasoft/Features/update_department/presentation/manag
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/manager/cubits/select_department/select_department_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/manager/cubits/update_department/update_department_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/update_department_screen.dart';
+import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
 void main() {
@@ -40,13 +42,17 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: NewUserScreen.id,
+        initialRoute: AdminAndManagerScreen.id,
+        theme: ThemeData(
+          scaffoldBackgroundColor: AppColors.color0xFFF3FAF9
+        ),
         routes: {
           LoginScreen.id: (context) => const LoginScreen(),
           HomeScreen.id: (context) => const HomeScreen(),
           NewDepartmentScreen.id: (context) => const NewDepartmentScreen(),
           UpdateDepartmentScreen.id:(context) => const UpdateDepartmentScreen(),
           NewUserScreen.id:(context) => const NewUserScreen(),
+          AdminAndManagerScreen.id:(context) => const AdminAndManagerScreen(),
         },
       ),
     );
