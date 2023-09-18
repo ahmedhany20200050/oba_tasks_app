@@ -18,7 +18,6 @@ class CreateDepCubit extends Cubit<CreateDepState> {
         token: token,
       );
       emit(CreateDepSuccess());
-      print("Created");
     } on Exception catch (e) {
       emit(CreateDepFailure(errmsg: e.toString()));
     }

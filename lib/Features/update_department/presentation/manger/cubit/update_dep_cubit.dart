@@ -26,7 +26,6 @@ class UpdateDepCubit extends Cubit<UpdateDepState> {
         token: token,
       );
       emit(UpdateDepSuccess());
-      print("Updated");
     } on Exception catch (e) {
       emit(UpdateDepFailure(errmsg: e.toString()));
     }

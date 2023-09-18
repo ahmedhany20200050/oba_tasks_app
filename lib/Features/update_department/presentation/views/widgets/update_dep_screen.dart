@@ -49,6 +49,9 @@ class _UpdateDepScreenState extends State<UpdateDepScreen> {
       builder: (context, state) {
         var cbt = BlocProvider.of<UpdateDepCubit>(context);
         return Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+          ),
           body: state is UpdateDepLoading
               ? const Center(
                   child: CircularProgressIndicator(),

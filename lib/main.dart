@@ -11,9 +11,14 @@ import 'package:tasks_app_eraasoft/Features/update_department/presentation/mange
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/widgets/update_dep_screen.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/manger/cubit/update_user_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/views/widgets/update_user_screen.dart';
+import 'package:tasks_app_eraasoft/Features/user_tasks/presentation/views/user_tasks_screen.dart';
+import 'package:tasks_app_eraasoft/Features/user_view/presentation/views/user_view_screen.dart';
+import 'package:tasks_app_eraasoft/core/app_colors.dart';
+import 'package:tasks_app_eraasoft/core/helpers/observer.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
 void main() {
+  Bloc.observer = Observer();
   runApp(const MyApp());
 }
 
@@ -42,6 +47,10 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        theme: ThemeData(
+            colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: AppColors.primaryswatch,
+        )),
         debugShowCheckedModeBanner: false,
         initialRoute: LoginScreen.id,
         routes: {
@@ -51,6 +60,8 @@ class MyApp extends StatelessWidget {
           CreateUSerScreen.id: (context) => const CreateUSerScreen(),
           UpdateDepScreen.id: (context) => const UpdateDepScreen(),
           UpdateUserScreen.id: (context) => const UpdateUserScreen(),
+          UserTasksScreen.id: (context) => const UserTasksScreen(),
+          UserViewScreen.id: (context) => const UserViewScreen(),
         },
       ),
     );

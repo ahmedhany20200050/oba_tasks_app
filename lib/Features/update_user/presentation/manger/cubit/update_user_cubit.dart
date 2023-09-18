@@ -36,7 +36,6 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
         token: token,
       );
       emit(UpdateUserSuccess());
-      print('Done');
     } on Exception catch (e) {
       emit(UpdateUserFailure(errmsg: e.toString()));
     }

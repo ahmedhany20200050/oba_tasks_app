@@ -45,6 +45,9 @@ class _CreateDepScreenState extends State<CreateDepScreen> {
       },
       builder: (context, state) {
         return Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+          ),
           body: state is CreateDepLoading
               ? const Center(
                   child: CircularProgressIndicator(),

@@ -52,6 +52,9 @@ class _UpdateUserScreenState extends State<UpdateUserScreen> {
       builder: (context, state) {
         var cbt = BlocProvider.of<UpdateUserCubit>(context);
         return Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+          ),
           body: state is UpdateUserLoading
               ? const Center(
                   child: CircularProgressIndicator(),

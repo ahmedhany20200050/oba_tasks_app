@@ -52,6 +52,9 @@ class _CreateUSerScreenState extends State<CreateUSerScreen> {
         },
         builder: (context, state) {
           return Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+            ),
             body: state is CreateUserLoading
                 ? const Center(
                     child: CircularProgressIndicator(),
