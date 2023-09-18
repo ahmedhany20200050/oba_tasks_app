@@ -34,4 +34,38 @@ class AppStyles{
     height: 0.08,
     letterSpacing: 1,
   );
+
+  static TextStyle homeTitleStyle= TextStyle(
+    color: Color(0xFF091E4A),
+    fontSize: 16*SizeConfig.textRatio,
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w700,
+  );
+
+  static TextStyle secondaryTextStyle= TextStyle(
+    color: Color(0xFF7B808A),
+    fontSize: 12*SizeConfig.textRatio,
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+
+  );
+  static TextStyle homeProgressStyle =  TextStyle(
+    color: Color(0xFF091E4A),
+    fontSize: 8*SizeConfig.textRatio,
+    fontFamily: 'Nunito',
+    fontWeight: FontWeight.w900,
+  );
+  static TextStyle calendarDayNamesStyle=  TextStyle(
+    color: Color(0xB2111111),
+    fontSize: 12*SizeConfig.textRatio,
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w700,
+  );
+  static TextStyle homeTaskTitleStyle= TextStyle(
+    color: const Color(0xFF5A55CA),
+    fontSize: 16*SizeConfig.textRatio,
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+  );
+
 }
