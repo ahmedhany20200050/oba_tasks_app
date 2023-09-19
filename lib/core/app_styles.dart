@@ -85,9 +85,53 @@ class AppStyles {
     fontSize: 8 * SizeConfig.textRatio,
     fontWeight: FontWeight.w400,
   );
-  static final TextStyle color0xFF091E4AFontSize8FontWeightW400Height20AfterTheDecimalPointLetterSpacing44AfterTheDecimalPoint = GoogleFonts.roboto(
+  static final TextStyle
+      color0xFF091E4AFontSize8FontWeightW400Height20AfterTheDecimalPointLetterSpacing44AfterTheDecimalPoint =
+      GoogleFonts.roboto(
     color: AppColors.color0xFF091E4A,
-    fontSize: 8*SizeConfig.textRatio,
+    fontSize: 8 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle
+      fontFamilyInterColor0xFF091E4AFontSize14FontWeightW700Height0 =
+      GoogleFonts.inter(
+    color: AppColors.color0xFF091E4A,
+    fontSize: 14 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w700,
+  );
+  static final TextStyle
+      fontFamilyInterColor0xFF7B808AFontSize12FontWeightW400Height0 =
+      GoogleFonts.inter(
+    color: AppColors.color0xFF7B808A,
+    fontSize: 12 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle
+      fontFamilyInterColor0xFF091E4AFontSize15FontWeightW400Height10AfterTheDecimalPoint =
+      GoogleFonts.inter(
+    color: AppColors.color0xFF091E4A,
+    fontSize: 15 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle
+      fontFamilyInterColor0xFF5A55CAFontSize15FontWeightW400Height10AfterTheDecimalPoint =
+      GoogleFonts.inter(
+    color: AppColors.color0xFF5A55CA,
+    fontSize: 15 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle
+      fontFamilyInterColor0xFF7B808AFontSize14FontWeightW400Height11AfterTheDecimalPoint =
+      GoogleFonts.inter(
+    color: AppColors.color0xFF7B808A,
+    fontSize: 14 * SizeConfig.textRatio,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle
+      fontFamilyInterColorWhiteFontSize15FontWeightW400Height10AfterTheDecimalPoint =
+      GoogleFonts.inter(
+    color: AppColors.colorWhite,
+    fontSize: 15 * SizeConfig.textRatio,
     fontWeight: FontWeight.w400,
   );
   static TextStyle LogintextStyle2 = TextStyle(

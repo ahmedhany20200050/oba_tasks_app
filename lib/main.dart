@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasks_app_eraasoft/Features/add_new_task/presentation/manager/cubits/calendar/calendar_cubit.dart';
+import 'package:tasks_app_eraasoft/Features/add_new_task/presentation/views/add_new_task_screen.dart';
 import 'package:tasks_app_eraasoft/Features/admin_and_manager/presentation/views/admin_and_manager_screen.dart';
 import 'package:tasks_app_eraasoft/Features/home/presentation/views/home_screen.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
@@ -42,11 +44,12 @@ class MyApp extends StatelessWidget {
         BlocProvider<SelectDepartmentCubit>(
             create: (context) => SelectDepartmentCubit()),
         BlocProvider<RadioButtonCubit>(create: (context) => RadioButtonCubit()),
-        BlocProvider<NewUserCubit>(create: (context) => NewUserCubit())
+        BlocProvider<NewUserCubit>(create: (context) => NewUserCubit()),
+        BlocProvider<CalendarCubit>(create: (context) => CalendarCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: LoginScreen.id,
+        initialRoute: AddNewTaskScreen.id,
         theme: ThemeData(scaffoldBackgroundColor: AppColors.color0xFFF3FAF9),
         routes: {
           LoginScreen.id: (context) => const LoginScreen(),
@@ -56,6 +59,7 @@ class MyApp extends StatelessWidget {
               const UpdateDepartmentScreen(),
           NewUserScreen.id: (context) => const NewUserScreen(),
           AdminAndManagerScreen.id: (context) => const AdminAndManagerScreen(),
+          AddNewTaskScreen.id: (context) => const AddNewTaskScreen(),
         },
       ),
     );

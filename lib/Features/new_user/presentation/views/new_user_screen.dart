@@ -33,7 +33,6 @@ class _NewUserScreenState extends State<NewUserScreen> with SnackBarViewer {
     _phoneController.dispose();
     _passwordContoller.dispose();
     _radioButtonController.dispose();
-    
     super.dispose();
   }
   @override
