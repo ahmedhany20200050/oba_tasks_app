@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
-class UserViewDrawer extends StatelessWidget {
-  const UserViewDrawer(
+class AdminViewDrawer extends StatelessWidget {
+  const AdminViewDrawer(
       {super.key,
-      required this.addDep,
-      required this.addUser,
       required this.updateDep,
       required this.updateUser,
       required this.logout});
-  final void Function() addDep;
-  final void Function() addUser;
+
   final void Function() updateDep;
   final void Function() updateUser;
   final void Function() logout;
@@ -27,44 +24,6 @@ class UserViewDrawer extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: 10 * SizeConfig.verticalBlock),
-                child: Card(
-                  child: Container(
-                    width: double.infinity,
-                    color: AppColors.primaryswatch,
-                    child: TextButton(
-                      onPressed: addDep,
-                      child: const Text(
-                        'Add Department',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: 10 * SizeConfig.verticalBlock),
-                child: Card(
-                  child: Container(
-                    width: double.infinity,
-                    color: AppColors.primaryswatch,
-                    child: TextButton(
-                      onPressed: addUser,
-                      child: const Text(
-                        'Add User',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
               Padding(
                 padding: EdgeInsets.symmetric(
                     vertical: 10 * SizeConfig.verticalBlock),

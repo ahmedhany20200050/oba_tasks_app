@@ -6,17 +6,18 @@ import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 
 class CreateDepCubit extends Cubit<CreateDepState> {
   CreateDepCubit() : super(CreateDepInitial());
+  String? token;
 
   Future createDepartment({required String name}) async {
     emit(CreateDepLoading());
-    await SecureStorage.getData(key: 'token');
+    token = await SecureStorage.getData(key: 'token');
     try {
       await Api().post(
         url: EndPoints.baseUrl + EndPoints.depStoreEndpoint,
         body: {
           'name': name,
         },
-        token: SecureStorage.value,
+        token: token,
       );
       emit(CreateDepSuccess());
     } on Exception catch (e) {

@@ -9,6 +9,7 @@ class UpdateDepCubit extends Cubit<UpdateDepState> {
   UpdateDepCubit() : super(UpdateDepInitial());
   List<DepModel> listOfDeps = [];
   List<int> depsIdList = [];
+  String? token;
 
   Future updateDepartment({
     required String depId,
@@ -16,7 +17,7 @@ class UpdateDepCubit extends Cubit<UpdateDepState> {
     required String managerId,
   }) async {
     emit(UpdateDepLoading());
-    await SecureStorage.getData(key: 'token');
+    token = await SecureStorage.getData(key: 'token');
     try {
       await Api().post(
         url: EndPoints.baseUrl + EndPoints.depUpdateEndpoint + depId,
@@ -24,7 +25,7 @@ class UpdateDepCubit extends Cubit<UpdateDepState> {
           'name': depName,
           'manager_id': managerId,
         },
-        token: SecureStorage.value,
+        token: token,
       );
       emit(UpdateDepSuccess());
     } on Exception catch (e) {
@@ -33,10 +34,10 @@ class UpdateDepCubit extends Cubit<UpdateDepState> {
   }
 
   getAllDepartments() async {
-    await SecureStorage.getData(key: 'token');
+    token = await SecureStorage.getData(key: 'token');
     var alldepsdata = await Api().get(
       url: EndPoints.baseUrl + EndPoints.allDepsEndpoint,
-      token: SecureStorage.value,
+      token: token,
     );
     for (var element in alldepsdata['data']) {
       listOfDeps.add(DepModel.fromJson(element));

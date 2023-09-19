@@ -9,10 +9,10 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
   CreateTaskCubit() : super(CreateTaskInitial());
 
   List<EmployeeModel> listOfEmploys = [];
-
   List<Map<String, int>> mapOfEmploy = [];
   int? selctedId;
   String? selctedname;
+  String? token;
 
   getIdValue(newValue) {
     selctedname = newValue;
@@ -31,19 +31,20 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
     required String employID,
   }) async {
     emit(CreateTaskLoading());
-    await SecureStorage.getData(key: 'token');
+    token = await SecureStorage.getData(key: 'token');
     try {
       await Api().post(
-          url: EndPoints.baseUrl + EndPoints.taskStoreEndpoint,
-          body: {
-            'name': name,
-            'description': description,
-            'status': "0",
-            'start_date': startDate,
-            'end_date': endDate,
-            'employee_id': employID,
-          },
-          token: SecureStorage.value);
+        url: EndPoints.baseUrl + EndPoints.taskStoreEndpoint,
+        body: {
+          'name': name,
+          'description': description,
+          'status': "0",
+          'start_date': startDate,
+          'end_date': endDate,
+          'employee_id': employID,
+        },
+        token: token,
+      );
       emit(CreateTaskSuccess());
     } on Exception catch (e) {
       emit(CreateTaskFailure(errmsg: e.toString()));
@@ -51,10 +52,10 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
   }
 
   Future getAllEmployees() async {
-    await SecureStorage.getData(key: 'token');
+    token = await SecureStorage.getData(key: 'token');
     var data = await Api().get(
       url: EndPoints.baseUrl + EndPoints.allEmployeesEndpoint,
-      token: SecureStorage.value,
+      token: token,
     );
     for (var element in data["data"]) {
       listOfEmploys.add(EmployeeModel.fromJson(element));

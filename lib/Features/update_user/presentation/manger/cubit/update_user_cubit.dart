@@ -9,6 +9,7 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
   UpdateUserCubit() : super(UpdateUserInitial());
   List<UserModel> listOfUsers = [];
   List<int> usersIdList = [];
+  String? token;
 
   Future updateUser({
     required String userId,
@@ -21,7 +22,7 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
     required String depId,
   }) async {
     emit(UpdateUserLoading());
-    await SecureStorage.getData(key: 'token');
+    token = await SecureStorage.getData(key: 'token');
     try {
       await Api().post(
         url: EndPoints.baseUrl + EndPoints.userUpdateEndpoint + userId,
@@ -34,7 +35,7 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
           'user_status': userStatus,
           'department_id': depId,
         },
-        token: SecureStorage.value,
+        token: token,
       );
       emit(UpdateUserSuccess());
     } on Exception catch (e) {
@@ -43,10 +44,10 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
   }
 
   getAllUsers() async {
-    await SecureStorage.getData(key: 'token');
+    token = await SecureStorage.getData(key: 'token');
     var alldepsdata = await Api().get(
       url: EndPoints.baseUrl + EndPoints.allUsersEndpoint,
-      token: SecureStorage.value,
+      token: token,
     );
     for (var element in alldepsdata['data']) {
       listOfUsers.add(UserModel.fromJson(element));

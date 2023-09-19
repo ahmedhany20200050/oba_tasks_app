@@ -1,23 +1,23 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasks_app_eraasoft/Features/user_tasks/presentation/manger/cubit/user_tasks_cubit.dart';
-import 'package:tasks_app_eraasoft/Features/user_tasks/presentation/manger/cubit/user_tasks_state.dart';
-import 'package:tasks_app_eraasoft/Features/user_tasks/presentation/views/widgets/drawer.dart';
-import 'package:tasks_app_eraasoft/Features/user_tasks/presentation/views/widgets/task_block.dart';
-import 'package:tasks_app_eraasoft/Features/user_tasks/presentation/views/widgets/usertasks_appbar.dart';
+import 'package:tasks_app_eraasoft/Features/employee_view/presentation/manger/cubit/user_tasks_cubit.dart';
+import 'package:tasks_app_eraasoft/Features/employee_view/presentation/manger/cubit/user_tasks_state.dart';
+import 'package:tasks_app_eraasoft/Features/employee_view/presentation/views/widgets/drawer.dart';
+import 'package:tasks_app_eraasoft/Features/employee_view/presentation/views/widgets/task_block.dart';
+import 'package:tasks_app_eraasoft/Features/employee_view/presentation/views/widgets/usertasks_appbar.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
-class UserTasksScreen extends StatefulWidget {
-  const UserTasksScreen({super.key});
+class EmployeeViewScreen extends StatefulWidget {
+  const EmployeeViewScreen({super.key});
   static const id = 'UserTasksScreen';
 
   @override
-  State<UserTasksScreen> createState() => _UserTasksScreenState();
+  State<EmployeeViewScreen> createState() => _EmployeeViewScreenState();
 }
 
-class _UserTasksScreenState extends State<UserTasksScreen> {
+class _EmployeeViewScreenState extends State<EmployeeViewScreen> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   @override
   Widget build(BuildContext context) {

@@ -6,6 +6,7 @@ import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 
 class CreateUserCubit extends Cubit<CreateUserState> {
   CreateUserCubit() : super(CreateUserInitial());
+  String? token;
 
   Future createUser({
     required String name,
@@ -16,7 +17,7 @@ class CreateUserCubit extends Cubit<CreateUserState> {
     required String depId,
   }) async {
     emit(CreateUserLoading());
-    await SecureStorage.getData(key: 'token');
+    token = await SecureStorage.getData(key: 'token');
     try {
       await Api().post(
         url: EndPoints.baseUrl + EndPoints.userStoreEndpoint,
@@ -28,7 +29,7 @@ class CreateUserCubit extends Cubit<CreateUserState> {
           'user_type': userType,
           'department_id': depId,
         },
-        token: SecureStorage.value,
+        token: token,
       );
       emit(CreateUserSuccess());
     } on Exception catch (e) {

@@ -12,10 +12,10 @@ import 'package:tasks_app_eraasoft/Features/update_department/presentation/mange
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/widgets/update_dep_screen.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/manger/cubit/update_user_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/views/widgets/update_user_screen.dart';
-import 'package:tasks_app_eraasoft/Features/user_tasks/presentation/manger/cubit/user_tasks_cubit.dart';
-import 'package:tasks_app_eraasoft/Features/user_tasks/presentation/views/user_tasks_screen.dart';
-import 'package:tasks_app_eraasoft/Features/user_view/presentation/manger/cubit/user_view_cubit.dart';
-import 'package:tasks_app_eraasoft/Features/user_view/presentation/views/user_view_screen.dart';
+import 'package:tasks_app_eraasoft/Features/employee_view/presentation/manger/cubit/user_tasks_cubit.dart';
+import 'package:tasks_app_eraasoft/Features/employee_view/presentation/views/employee_view_screen.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/user_view_cubit.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/admin_view_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/helpers/cache_helper.dart';
 import 'package:tasks_app_eraasoft/core/helpers/observer.dart';
@@ -34,9 +34,9 @@ void main() async {
   if (token == null || userType == null) {
     firstPage = LoginScreen.id;
   } else if (userType.contains('employ')) {
-    firstPage = UserTasksScreen.id;
+    firstPage = EmployeeViewScreen.id;
   } else {
-    firstPage = UserViewScreen.id;
+    firstPage = AdminViewScreen.id;
   }
   runApp(MyApp(firstPage: firstPage));
 }
@@ -88,8 +88,8 @@ class MyApp extends StatelessWidget {
           CreateUSerScreen.id: (context) => const CreateUSerScreen(),
           UpdateDepScreen.id: (context) => const UpdateDepScreen(),
           UpdateUserScreen.id: (context) => const UpdateUserScreen(),
-          UserTasksScreen.id: (context) => const UserTasksScreen(),
-          UserViewScreen.id: (context) => const UserViewScreen(),
+          EmployeeViewScreen.id: (context) => const EmployeeViewScreen(),
+          AdminViewScreen.id: (context) => const AdminViewScreen(),
           CreateTaskScreen.id: (context) => const CreateTaskScreen(),
         },
       ),

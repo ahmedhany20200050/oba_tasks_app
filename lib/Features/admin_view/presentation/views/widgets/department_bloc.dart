@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tasks_app_eraasoft/Features/user_view/presentation/views/widgets/employee_card.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/employee_card.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/app_styles.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';

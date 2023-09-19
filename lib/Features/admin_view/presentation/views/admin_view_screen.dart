@@ -4,24 +4,24 @@ import 'package:tasks_app_eraasoft/Features/create_department/presentation/views
 import 'package:tasks_app_eraasoft/Features/create_user/presentation/views/widgets/create_user_screen.dart';
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/widgets/update_dep_screen.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/views/widgets/update_user_screen.dart';
-import 'package:tasks_app_eraasoft/Features/user_view/presentation/manger/cubit/user_view_cubit.dart';
-import 'package:tasks_app_eraasoft/Features/user_view/presentation/manger/cubit/user_view_state.dart';
-import 'package:tasks_app_eraasoft/Features/user_view/presentation/views/widgets/userview_appbar.dart';
-import 'package:tasks_app_eraasoft/Features/user_view/presentation/views/widgets/custom_tapbar.dart';
-import 'package:tasks_app_eraasoft/Features/user_view/presentation/views/widgets/tasks_tap.dart';
-import 'package:tasks_app_eraasoft/Features/user_view/presentation/views/widgets/the_drawer.dart';
-import 'package:tasks_app_eraasoft/Features/user_view/presentation/views/widgets/user_tap.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/user_view_cubit.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/user_view_state.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/userview_appbar.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/custom_tapbar.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/tasks_tap.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/the_drawer.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/user_tap.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
-class UserViewScreen extends StatefulWidget {
-  const UserViewScreen({super.key});
+class AdminViewScreen extends StatefulWidget {
+  const AdminViewScreen({super.key});
   static const id = 'UserViewScreen';
 
   @override
-  State<UserViewScreen> createState() => _UserViewScreenState();
+  State<AdminViewScreen> createState() => _AdminViewScreenState();
 }
 
-class _UserViewScreenState extends State<UserViewScreen>
+class _AdminViewScreenState extends State<AdminViewScreen>
     with SingleTickerProviderStateMixin {
   TabController? tabController;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
@@ -40,19 +40,15 @@ class _UserViewScreenState extends State<UserViewScreen>
 
   @override
   Widget build(BuildContext context) {
+    var args = ModalRoute.of(context)?.settings.arguments;
+
     return BlocConsumer<UserViewCubit, UserViewState>(
       listener: (context, state) {},
       builder: (context, state) {
         var userViewCbt = BlocProvider.of<UserViewCubit>(context);
         return Scaffold(
           key: scaffoldKey,
-          drawer: UserViewDrawer(
-            addDep: () {
-              Navigator.pushNamed(context, CreateDepScreen.id);
-            },
-            addUser: () {
-              Navigator.pushNamed(context, CreateUSerScreen.id);
-            },
+          drawer: AdminViewDrawer(
             updateDep: () {
               Navigator.pushNamed(context, UpdateDepScreen.id);
             },
@@ -71,8 +67,9 @@ class _UserViewScreenState extends State<UserViewScreen>
             child: SafeArea(
               child: Column(
                 children: [
-                  UserViewAppBar(
+                  AdminViewAppBar(
                     dkey: scaffoldKey,
+                    userType: args.toString(),
                   ),
                   SizedBox(
                     height: 10 * SizeConfig.verticalBlock,

@@ -8,8 +8,8 @@ import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/logi
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_state.dart';
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/widgets/update_dep_screen.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/views/widgets/update_user_screen.dart';
-import 'package:tasks_app_eraasoft/Features/user_tasks/presentation/views/user_tasks_screen.dart';
-import 'package:tasks_app_eraasoft/Features/user_view/presentation/views/user_view_screen.dart';
+import 'package:tasks_app_eraasoft/Features/employee_view/presentation/views/employee_view_screen.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/admin_view_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/helpers/custon_snakbar.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
@@ -33,9 +33,17 @@ class _LoginScreenState extends State<LoginScreen> {
       listener: (context, state) {
         if (state is LoginCubitSuccess) {
           if (state.usertype.contains('employ')) {
-            Navigator.of(context).pushNamed(UserTasksScreen.id);
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              EmployeeViewScreen.id,
+              
+              (route) => true,
+            );
           } else {
-            Navigator.of(context).pushNamed(UserViewScreen.id);
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              AdminViewScreen.id,
+              arguments: state.usertype,
+              (route) => true,
+            );
           }
           customSnakbar(
             context,
