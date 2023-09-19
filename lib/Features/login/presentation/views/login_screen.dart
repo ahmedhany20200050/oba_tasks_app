@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_eraasoft/Features/create_department/presentation/views/widgets/create_dep_screen.dart';
+import 'package:tasks_app_eraasoft/Features/create_task/presentation/views/create_task_screen.dart';
 import 'package:tasks_app_eraasoft/Features/create_user/presentation/views/widgets/create_user_screen.dart';
 import 'package:tasks_app_eraasoft/Features/home/presentation/views/home_screen.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
@@ -31,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocConsumer<LoginCubitCubit, LoginCubitState>(
       listener: (context, state) {
         if (state is LoginCubitSuccess) {
-          Navigator.of(context).pushNamed(UserViewScreen.id);
+          Navigator.of(context).pushNamed(CreateTaskScreen.id);
           customSnakbar(
             context,
             const SnackBar(
