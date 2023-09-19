@@ -46,6 +46,7 @@ class Api {
       Map<String, dynamic> data = jsonDecode(response.body);
       return data;
     } else {
+      print(response.body);
       throw Exception(
           response.reasonPhrase.toString());
     }

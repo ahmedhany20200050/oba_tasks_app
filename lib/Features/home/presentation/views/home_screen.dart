@@ -11,6 +11,7 @@ import 'package:tasks_app_eraasoft/core/helpers/api.dart';
 import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
+import '../../../../core/widgets/drawer.dart';
 import '../../../departmentForms/presentation/views/add_department.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,29 +24,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a key
-  Future logout(context) async {
-    try {
-      // ignore: missing_required_param
-      var storage = FlutterSecureStorage();
-      var storage2 = await SharedPreferences.getInstance();
-      await storage2.setBool("keepMeLoggedIn", false);
-      String? token = await storage.read(key: "token");
-      await storage.delete(key: "token");
-      // print('logged out');
-      Navigator.of(context).pushNamedAndRemoveUntil(
-        LoginScreen.id,
-        (route) => false,
-      );
-      await Api().post(
-        url: EndPoints.baseUrl + EndPoints.logoutEndpoint,
-        token: token,
-      );
 
-      // ignore: unused_catch_clause
-    } on Exception catch (e) {
-      print(e.toString());
-    }
-  }
   List <String> weekDays=["Sun","Mon","Tus","Wen","Thu","Fri","Sat"];
   List <int> daysNumbers=[1,2,3,4,5,6,7,8,9,10,11,12];
   int selectedIndex=0;
@@ -53,28 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _key,
-      drawer: Drawer(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(
-                onPressed: () {
-                  logout(context);
-                },
-                child: const Text("Logout")),
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(AddDepartmentScreen.id);
-                },
-                child: const Text("Add Department")),
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(UpdateDepartmentScreen.id);
-                },
-                child: const Text("Update Department")),
-          ],
-        ),
-      ),
+      drawer: const CustomDrawer(),
       body: Container(
         padding:  EdgeInsets.symmetric(vertical: 20*SizeConfig.verticalBlock,horizontal: 24*SizeConfig.horizontalBlock),
         child: CustomScrollView(
@@ -342,5 +300,31 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+}
+
+
+
+Future logout(context) async {
+  try {
+    // ignore: missing_required_param
+    var storage = FlutterSecureStorage();
+    var storage2 = await SharedPreferences.getInstance();
+    await storage2.setBool("keepMeLoggedIn", false);
+    String? token = await storage.read(key: "token");
+    await storage.delete(key: "token");
+    // print('logged out');
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      LoginScreen.id,
+          (route) => false,
+    );
+    await Api().post(
+      url: EndPoints.baseUrl + EndPoints.logoutEndpoint,
+      token: token,
+    );
+
+    // ignore: unused_catch_clause
+  } on Exception catch (e) {
+    print(e.toString());
   }
 }
