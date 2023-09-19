@@ -10,13 +10,15 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool readOnly;
   final bool obscureText;
+  final int? maxLines;
   const CustomTextFormField(
       {super.key,
       required this.hintText,
       this.controller,
       this.validator,
       this.suffixIcon,
-      this.readOnly = false,this.obscureText = false});
+      this.readOnly = false,
+      this.obscureText = false, this.maxLines});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class CustomTextFormField extends StatelessWidget {
       ),
       child: TextFormField(
         obscureText: obscureText,
+        maxLines: maxLines,
         readOnly: readOnly,
         onTapOutside: (_) => FocusScope.of(context).unfocus(),
         controller: controller,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasks_app_eraasoft/Features/add_new_task/presentation/views/add_new_task_screen.dart';
 import 'package:tasks_app_eraasoft/Features/admin_and_manager/presentation/views/widgets/department_section.dart';
 import 'package:tasks_app_eraasoft/Features/new_department/presentation/views/screen/new_department_screen.dart';
 import 'package:tasks_app_eraasoft/Features/new_user/presentation/views/new_user_screen.dart';
@@ -56,6 +57,12 @@ class _AdminAndManagerScreenState extends State<AdminAndManagerScreen>
                   Navigator.pushNamed(context, NewUserScreen.id);
                 },
                 child: const Text("New User"),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, AddNewTaskScreen.id);
+                },
+                child: const Text("Add New Task"),
               ),
               // GestureDetector(
               //   onTap: () {

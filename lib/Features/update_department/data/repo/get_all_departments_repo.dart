@@ -5,10 +5,9 @@ import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 
 class GetAllDepartmentsRepo {
   static Future<List<DepartmentModel>> getAllDepartments() async {
-    Map<String,dynamic> data = await Api.get(
+    final Map<String,dynamic> data = await Api.get(
         url: EndPoints.baseUrl + EndPoints.getAllDepartmentsEndpoint,
         token: token);
-    print(data);
     return data['data']
         .map((department) => DepartmentModel.fromJson(department))
         .toList()

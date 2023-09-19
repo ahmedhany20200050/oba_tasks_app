@@ -1,4 +1,4 @@
-import 'package:tasks_app_eraasoft/Features/update_department/data/models/user_model.dart';
+import 'package:tasks_app_eraasoft/core/data/models/user_model.dart';
 
 class DepartmentModel {
   final int id;
