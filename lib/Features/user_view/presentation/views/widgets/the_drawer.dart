@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
-class TheDrawer extends StatelessWidget {
-  const TheDrawer(
+class UserViewDrawer extends StatelessWidget {
+  const UserViewDrawer(
       {super.key,
       required this.addDep,
       required this.addUser,
       required this.updateDep,
-      required this.updateUser});
+      required this.updateUser,
+      required this.logout});
   final void Function() addDep;
   final void Function() addUser;
   final void Function() updateDep;
   final void Function() updateUser;
+  final void Function() logout;
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +95,26 @@ class TheDrawer extends StatelessWidget {
                       onPressed: updateDep,
                       child: const Text(
                         'Update Department',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const Spacer(),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: 10 * SizeConfig.verticalBlock),
+                child: Card(
+                  child: Container(
+                    width: double.infinity,
+                    color: AppColors.primaryswatch,
+                    child: TextButton(
+                      onPressed: logout,
+                      child: const Text(
+                        'Logout',
                         style: TextStyle(
                           color: Colors.white,
                         ),

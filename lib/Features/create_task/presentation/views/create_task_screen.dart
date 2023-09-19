@@ -1,8 +1,6 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasks_app_eraasoft/Features/create_task/data/models/employ_model.dart';
 import 'package:tasks_app_eraasoft/Features/create_task/presentation/manger/cubit/create_task_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/create_task/presentation/manger/cubit/create_task_state.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
@@ -88,7 +86,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
         }
       },
       builder: (context, state) {
-        var cbt = BlocProvider.of<CreateTaskCubit>(context);
+        var createtaskCbt = BlocProvider.of<CreateTaskCubit>(context);
         return Scaffold(
           appBar: AppBar(
             elevation: 0,
@@ -219,15 +217,15 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                       height: 10 * SizeConfig.verticalBlock,
                     ),
                     DropdownButtonFormField(
-                      items: cbt.mapOfEmploy
+                      items: createtaskCbt.mapOfEmploy
                           .map((item) => DropdownMenuItem<String>(
                                 value: item.keys.first,
                                 child: Text(item.keys.first),
                               ))
                           .toList(),
                       onChanged: (value) {
-                        cbt.getIdValue(value);
-                        print(cbt.selctedId);
+                        createtaskCbt.getIdValue(value);
+                        
                       },
                       // ignore: body_might_complete_normally_nullable
                       validator: (value) {

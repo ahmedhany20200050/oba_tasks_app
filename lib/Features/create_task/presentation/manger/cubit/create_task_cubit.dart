@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_eraasoft/Features/create_task/data/models/employ_model.dart';
 import 'package:tasks_app_eraasoft/Features/create_task/presentation/manger/cubit/create_task_state.dart';
-import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/core/helpers/api.dart';
+import 'package:tasks_app_eraasoft/core/helpers/secure_storage.dart';
 import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 
 class CreateTaskCubit extends Cubit<CreateTaskState> {
@@ -11,10 +11,10 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
   List<EmployeeModel> listOfEmploys = [];
 
   List<Map<String, int>> mapOfEmploy = [];
-  int? selctedId  ;
- String? selctedname  ;
+  int? selctedId;
+  String? selctedname;
 
- getIdValue(newValue){
+  getIdValue(newValue) {
     selctedname = newValue;
     selctedId = mapOfEmploy
         .firstWhere((item) => item.keys.first == newValue)
@@ -31,6 +31,7 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
     required String employID,
   }) async {
     emit(CreateTaskLoading());
+    await SecureStorage.getData(key: 'token');
     try {
       await Api().post(
           url: EndPoints.baseUrl + EndPoints.taskStoreEndpoint,
@@ -42,7 +43,7 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
             'end_date': endDate,
             'employee_id': employID,
           },
-          token: token);
+          token: SecureStorage.value);
       emit(CreateTaskSuccess());
     } on Exception catch (e) {
       emit(CreateTaskFailure(errmsg: e.toString()));
@@ -50,16 +51,17 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
   }
 
   Future getAllEmployees() async {
+    await SecureStorage.getData(key: 'token');
     var data = await Api().get(
-        url: EndPoints.baseUrl + EndPoints.allEmployeesEndpoint, token: token);
+      url: EndPoints.baseUrl + EndPoints.allEmployeesEndpoint,
+      token: SecureStorage.value,
+    );
     for (var element in data["data"]) {
       listOfEmploys.add(EmployeeModel.fromJson(element));
     }
-    
+
     for (var element in listOfEmploys) {
-      mapOfEmploy.add({
-        element.name! :element.id!
-      });
+      mapOfEmploy.add({element.name!: element.id!});
     }
   }
 }

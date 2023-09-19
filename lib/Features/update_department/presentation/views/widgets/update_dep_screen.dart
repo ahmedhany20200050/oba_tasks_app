@@ -47,7 +47,7 @@ class _UpdateDepScreenState extends State<UpdateDepScreen> {
         }
       },
       builder: (context, state) {
-        var cbt = BlocProvider.of<UpdateDepCubit>(context);
+        var updateDepCbt = BlocProvider.of<UpdateDepCubit>(context);
         return Scaffold(
           appBar: AppBar(
             elevation: 0,
@@ -96,7 +96,7 @@ class _UpdateDepScreenState extends State<UpdateDepScreen> {
                           height: 10 * SizeConfig.verticalBlock,
                         ),
                         DropdownSearch<int>(
-                          items: cbt.depsIdList,
+                          items: updateDepCbt.depsIdList,
                           onChanged: (value) {
                             selectedDepId = value;
                           },

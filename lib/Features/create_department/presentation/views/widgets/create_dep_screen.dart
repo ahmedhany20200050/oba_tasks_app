@@ -53,82 +53,80 @@ class _CreateDepScreenState extends State<CreateDepScreen> {
                   child: CircularProgressIndicator(),
                 )
               : Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: 24 * SizeConfig.horizontalBlock,
-                    vertical: 48 * SizeConfig.verticalBlock),
-                child: Form(
-                  key: formkey,
-                  child: Column(
-                    children: [
-                      Text(
-                        ' New Department!',
-                        textAlign: TextAlign.center,
-                        style: AppStyles.LoginTextStyle1,
-                      ),
-                      SizedBox(
-                        height: 20 * SizeConfig.verticalBlock,
-                      ),
-                      SizedBox(
-                        width: 274 * SizeConfig.horizontalBlock,
-                        child: Text(
-                          'Create a new department now and assign a manager to start the work!',
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 24 * SizeConfig.horizontalBlock,
+                      vertical: 48 * SizeConfig.verticalBlock),
+                  child: Form(
+                    key: formkey,
+                    child: Column(
+                      children: [
+                        Text(
+                          ' New Department!',
                           textAlign: TextAlign.center,
-                          style: AppStyles.LogintextStyle2,
+                          style: AppStyles.LoginTextStyle1,
                         ),
-                      ),
-                      SizedBox(
-                        height: 20 * SizeConfig.verticalBlock,
-                      ),
-                      TextFormField(
-                        controller: namecon,
-                        decoration: const InputDecoration(
-                          hintText: 'Name',
-                          hintStyle: TextStyle(color: Colors.black),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
+                        SizedBox(
+                          height: 20 * SizeConfig.verticalBlock,
+                        ),
+                        SizedBox(
+                          width: 274 * SizeConfig.horizontalBlock,
+                          child: Text(
+                            'Create a new department now and assign a manager to start the work!',
+                            textAlign: TextAlign.center,
+                            style: AppStyles.LogintextStyle2,
                           ),
                         ),
-                        // ignore: body_might_complete_normally_nullable
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Name must not be empty';
-                          } else if (value.length < 3 ||
-                              value.length > 20) {
-                            return 'Name must be between 3-20 characters';
-                          }
-                        },
-                      ),
-                      SizedBox(
-                        height: 20 * SizeConfig.verticalBlock,
-                      ),
-                      SizedBox(
-                        width: 312 * SizeConfig.horizontalBlock,
-                        height: 48 * SizeConfig.verticalBlock,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              if (formkey.currentState!.validate()) {
-                                BlocProvider.of<CreateDepCubit>(context)
-                                    .createDepartment(name: namecon.text);
-                              }
-                            },
-                            style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                Color(0xFF5A55CA),
-                              ),
+                        SizedBox(
+                          height: 20 * SizeConfig.verticalBlock,
+                        ),
+                        TextFormField(
+                          controller: namecon,
+                          decoration: const InputDecoration(
+                            hintText: 'Name',
+                            hintStyle: TextStyle(color: Colors.black),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
                             ),
-                            child: Text(
-                              'CREATE',
-                              style: AppStyles.textStyle14,
-                            )),
-                      )
-                      // TextButton(onPressed: () {  }, child: ,),
-                    ],
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                            ),
+                          ),
+                          // ignore: body_might_complete_normally_nullable
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Name must not be empty';
+                            } else if (value.length < 3 || value.length > 20) {
+                              return 'Name must be between 3-20 characters';
+                            }
+                          },
+                        ),
+                        SizedBox(
+                          height: 20 * SizeConfig.verticalBlock,
+                        ),
+                        SizedBox(
+                          width: 312 * SizeConfig.horizontalBlock,
+                          height: 48 * SizeConfig.verticalBlock,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                if (formkey.currentState!.validate()) {
+                                  BlocProvider.of<CreateDepCubit>(context)
+                                      .createDepartment(name: namecon.text);
+                                }
+                              },
+                              style: const ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll(
+                                  Color(0xFF5A55CA),
+                                ),
+                              ),
+                              child: Text(
+                                'CREATE',
+                                style: AppStyles.textStyle14,
+                              )),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
         );
       },
     );

@@ -6,8 +6,6 @@ import 'package:tasks_app_eraasoft/core/helpers/api.dart';
 import 'package:tasks_app_eraasoft/core/helpers/secure_storage.dart';
 import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 
-late String token;
-
 class LoginCubitCubit extends Cubit<LoginCubitState> {
   LoginCubitCubit() : super(LoginCubitInitial());
 
@@ -23,10 +21,10 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
           'password': password,
         },
       );
-      emit(LoginCubitSuccess());
-      SecureStorage.writeData(key: "token", value: data['data']['token']) ;
       model = LoginUserModel.fromJson(data);
-      token=data['data']['token'];
+      SecureStorage.writeData(key: "token", value: data['data']['token']);
+      SecureStorage.writeData(key: 'userType', value: model!.data!.userType);
+      emit(LoginCubitSuccess(usertype: model!.data!.userType!));
     } on Exception catch (e) {
       emit(LoginCubitFailure(errmsg: e.toString()));
     }

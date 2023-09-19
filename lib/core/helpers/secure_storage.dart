@@ -1,34 +1,29 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-
 class SecureStorage {
-static var storage = const FlutterSecureStorage();
- static init() {
-    AndroidOptions getAndroidOptions() => const AndroidOptions(
-          encryptedSharedPreferences: true,
-        );
-     storage = FlutterSecureStorage(aOptions: getAndroidOptions());
+  static String? value;
+
+  static FlutterSecureStorage? storage;
+  static init() {
+    storage =const FlutterSecureStorage();
   }
 
-  static Future<void> writeData({
+  static writeData({
     required String key,
     required dynamic value,
   }) async {
-    
-      return await storage.write( key: key, value: value);
-    
+    await storage!.write(key: key, value: value);
   }
 
-  static Future<String?> getData({
-    required String key,
-  }) async{
-    return await storage.read(key: key);
-  }
-
-  static Future<void> deleteData({
+  static getData({
     required String key,
   }) async {
-    return await storage.delete(key: key);
+    return await storage!.read(key: key);
   }
 
+  static deleteData({
+    required String key,
+  }) async {
+    await storage!.delete(key: key);
+  }
 }

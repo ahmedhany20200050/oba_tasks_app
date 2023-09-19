@@ -1,7 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasks_app_eraasoft/Features/home/presentation/views/home_screen.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/manger/cubit/update_user_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/manger/cubit/update_user_state.dart';
 import 'package:tasks_app_eraasoft/core/app_styles.dart';
@@ -30,7 +29,7 @@ class _UpdateUserScreenState extends State<UpdateUserScreen> {
     return BlocConsumer<UpdateUserCubit, UpdateUserState>(
       listener: (context, state) {
         if (state is UpdateUserSuccess) {
-          Navigator.of(context).pushNamed(HomeScreen.id);
+          // Navigator.of(context).pushNamed(HomeScreen.id);
           customSnakbar(
             context,
             const SnackBar(
@@ -50,7 +49,7 @@ class _UpdateUserScreenState extends State<UpdateUserScreen> {
         }
       },
       builder: (context, state) {
-        var cbt = BlocProvider.of<UpdateUserCubit>(context);
+        var updateUSerCbt = BlocProvider.of<UpdateUserCubit>(context);
         return Scaffold(
           appBar: AppBar(
             elevation: 0,
@@ -99,7 +98,7 @@ class _UpdateUserScreenState extends State<UpdateUserScreen> {
                           height: 10 * SizeConfig.verticalBlock,
                         ),
                         DropdownSearch<int>(
-                          items: cbt.usersIdList,
+                          items: updateUSerCbt.usersIdList,
                           onChanged: (value) {
                             selectedUserId = value;
                           },

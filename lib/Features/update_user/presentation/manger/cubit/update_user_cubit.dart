@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/data/models/user_model.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/manger/cubit/update_user_state.dart';
 import 'package:tasks_app_eraasoft/core/helpers/api.dart';
+import 'package:tasks_app_eraasoft/core/helpers/secure_storage.dart';
 import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 
 class UpdateUserCubit extends Cubit<UpdateUserState> {
@@ -21,6 +21,7 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
     required String depId,
   }) async {
     emit(UpdateUserLoading());
+    await SecureStorage.getData(key: 'token');
     try {
       await Api().post(
         url: EndPoints.baseUrl + EndPoints.userUpdateEndpoint + userId,
@@ -33,7 +34,7 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
           'user_status': userStatus,
           'department_id': depId,
         },
-        token: token,
+        token: SecureStorage.value,
       );
       emit(UpdateUserSuccess());
     } on Exception catch (e) {
@@ -42,8 +43,11 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
   }
 
   getAllUsers() async {
-    var alldepsdata = await Api()
-        .get(url: EndPoints.baseUrl + EndPoints.allUsersEndpoint, token: token);
+    await SecureStorage.getData(key: 'token');
+    var alldepsdata = await Api().get(
+      url: EndPoints.baseUrl + EndPoints.allUsersEndpoint,
+      token: SecureStorage.value,
+    );
     for (var element in alldepsdata['data']) {
       listOfUsers.add(UserModel.fromJson(element));
     }

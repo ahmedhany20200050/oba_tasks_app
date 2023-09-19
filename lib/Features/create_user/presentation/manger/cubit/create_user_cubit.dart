@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_eraasoft/Features/create_user/presentation/manger/cubit/create_user_state.dart';
-import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/core/helpers/api.dart';
+import 'package:tasks_app_eraasoft/core/helpers/secure_storage.dart';
 import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 
 class CreateUserCubit extends Cubit<CreateUserState> {
@@ -16,6 +16,7 @@ class CreateUserCubit extends Cubit<CreateUserState> {
     required String depId,
   }) async {
     emit(CreateUserLoading());
+    await SecureStorage.getData(key: 'token');
     try {
       await Api().post(
         url: EndPoints.baseUrl + EndPoints.userStoreEndpoint,
@@ -27,7 +28,7 @@ class CreateUserCubit extends Cubit<CreateUserState> {
           'user_type': userType,
           'department_id': depId,
         },
-        token: token,
+        token: SecureStorage.value,
       );
       emit(CreateUserSuccess());
     } on Exception catch (e) {

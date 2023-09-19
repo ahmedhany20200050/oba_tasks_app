@@ -3,8 +3,8 @@ import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/app_styles.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.dkey});
+class UserViewAppBar extends StatelessWidget {
+  const UserViewAppBar({super.key, required this.dkey});
   final GlobalKey<ScaffoldState> dkey;
 
   @override
