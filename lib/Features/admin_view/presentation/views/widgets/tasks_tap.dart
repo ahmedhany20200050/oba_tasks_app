@@ -21,7 +21,7 @@ class TasksTap extends StatelessWidget {
             CalendarTimeline(
               initialDate: DateTime.now(),
               firstDate: DateTime(2020, 1, 1),
-              lastDate: DateTime(2025, 12, 31),
+              lastDate: DateTime(2026, 12, 31),
               onDateSelected: (date) {},
               monthColor: AppColors.lightprimaryswatch,
               dayColor: AppColors.darkprimaryswatch,

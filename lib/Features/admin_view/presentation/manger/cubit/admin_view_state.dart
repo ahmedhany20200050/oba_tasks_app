@@ -8,6 +8,12 @@ final class AdminGetAllTasks extends AdminViewStates {
   AdminGetAllTasks({this.code});
 }
 
+final class AdminGetAllDeps extends AdminViewStates {
+  final int? code;
+
+  AdminGetAllDeps({this.code});
+}
+
 final class AdminLogoutSuccess extends AdminViewStates {}
 
 final class AdminLogoutLoading extends AdminViewStates {}

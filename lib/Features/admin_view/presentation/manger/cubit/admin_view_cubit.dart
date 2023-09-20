@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/data/models/admin_dep_model.dart';
 import 'package:tasks_app_eraasoft/Features/employee_view/data/models/task_model.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/views/login_screen.dart';
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/admin_view_state.dart';
@@ -12,9 +13,10 @@ class AdminViewCubit extends Cubit<AdminViewStates> {
   String? token;
   String? usertype;
   List<TaskModel> listOfTasks = [];
+  List<AdminDepModel> listOfDeps = [];
 
   Future adminAllTasks() async {
-  usertype=  await SecureStorage.getData(key: 'userType');
+    usertype = await SecureStorage.getData(key: 'userType');
     token = await SecureStorage.getData(key: 'token');
     await Api()
         .get(
@@ -34,6 +36,27 @@ class AdminViewCubit extends Cubit<AdminViewStates> {
     });
   }
 
+  Future adminAllDeparts() async {
+    usertype = await SecureStorage.getData(key: 'userType');
+    token = await SecureStorage.getData(key: 'token');
+    await Api()
+        .get(
+      url: EndPoints.baseUrl + EndPoints.allDepssEndpoint,
+      token: token,
+    )
+        .then((value) {
+      if (value == 500) {
+        SecureStorage.deleteData(key: 'token');
+        emit(AdminGetAllDeps(code: value));
+      } else {
+        for (var element in value['data']) {
+          listOfDeps.add(AdminDepModel.fromJson(element));
+        }
+        emit(AdminGetAllDeps());
+      }
+    });
+  }
+
   Future logout(context) async {
     emit(AdminLogoutLoading());
     token = await SecureStorage.getData(key: 'token');
@@ -48,10 +71,12 @@ class AdminViewCubit extends Cubit<AdminViewStates> {
           .then((value) {
         if (value == 500) {
           SecureStorage.deleteData(key: 'token');
+          SecureStorage.deleteData(key: 'userType');
           Navigator.of(context)
               .pushNamedAndRemoveUntil(LoginScreen.id, (route) => false);
         } else {
           SecureStorage.deleteData(key: 'token');
+          SecureStorage.deleteData(key: 'userType');
           Navigator.of(context)
               .pushNamedAndRemoveUntil(LoginScreen.id, (route) => false);
           emit(AdminLogoutSuccess());

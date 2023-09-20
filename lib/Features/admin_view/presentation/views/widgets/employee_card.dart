@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/data/models/admin_dep_model.dart';
+import 'package:tasks_app_eraasoft/Features/update_department/data/models/dep_model.dart';
+import 'package:tasks_app_eraasoft/Features/update_user/presentation/views/widgets/update_user_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/app_styles.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
 class EmployeeCard extends StatelessWidget {
-  const EmployeeCard({super.key});
+  const EmployeeCard({super.key, required this.employee});
+  final AdminManager employee;
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +39,27 @@ class EmployeeCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Employee name',
-                style: AppStyles.textStyle16dark025w700.copyWith(
-                  letterSpacing: 0.44,
-                ),
+              Row(
+                children: [
+                  Text(
+                    employee.name!,
+                    style: AppStyles.textStyle16dark025w700.copyWith(
+                      letterSpacing: 0.44,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, UpdateUserScreen.id);
+                    },
+                    child: Icon(
+                      Icons.more_vert_rounded,
+                      color: AppColors.lightprimaryswatch.withOpacity(0.6),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 7 * SizeConfig.verticalBlock,
@@ -51,10 +71,12 @@ class EmployeeCard extends StatelessWidget {
                   color: AppColors.lightprimaryswatch.withOpacity(0.1),
                 ),
                 child: Text(
-                  "ADMIN",
+                  employee.userType!,
                   style: AppStyles.textStyle8light044w400.copyWith(
                     color: AppColors.primaryswatch,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               SizedBox(
@@ -67,10 +89,12 @@ class EmployeeCard extends StatelessWidget {
                     color: AppColors.lightprimaryswatch.withOpacity(0.5),
                   ),
                   Text(
-                    'user email',
+                    employee.email!,
                     style: AppStyles.textStyle8light044w400.copyWith(
                       color: AppColors.lightprimaryswatch.withOpacity(0.9),
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
@@ -81,10 +105,12 @@ class EmployeeCard extends StatelessWidget {
                     color: AppColors.lightprimaryswatch.withOpacity(0.5),
                   ),
                   Text(
-                    'user email',
+                    employee.phone!.toString(),
                     style: AppStyles.textStyle8light044w400.copyWith(
                       color: AppColors.lightprimaryswatch.withOpacity(0.9),
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),

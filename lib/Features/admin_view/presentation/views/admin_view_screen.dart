@@ -38,20 +38,16 @@ class _AdminViewScreenState extends State<AdminViewScreen>
 
   @override
   Widget build(BuildContext context) {
-    
     return BlocConsumer<AdminViewCubit, AdminViewStates>(
       listener: (context, state) {},
       builder: (context, state) {
         var adminCbt = BlocProvider.of<AdminViewCubit>(context);
+        // print(adminCbt.listOfTasks.length);
         return Scaffold(
           key: scaffoldKey,
           drawer: AdminViewDrawer(
-            updateDep: () {
-              Navigator.pushNamed(context, UpdateDepScreen.id);
-            },
-            updateUser: () {
-              Navigator.pushNamed(context, UpdateUserScreen.id);
-            },
+            
+            
             logout: () {
               adminCbt.logout(context);
             },
@@ -62,7 +58,7 @@ class _AdminViewScreenState extends State<AdminViewScreen>
               vertical: 20 * SizeConfig.verticalBlock,
             ),
             child: SafeArea(
-              child: adminCbt.listOfTasks.isEmpty
+              child: adminCbt.listOfTasks.isEmpty 
                   ? const Center(
                       child: CircularProgressIndicator.adaptive(),
                     )
@@ -82,7 +78,9 @@ class _AdminViewScreenState extends State<AdminViewScreen>
                           child: TabBarView(
                             controller: tabController,
                             children: [
-                              const UsersTap(),
+                              UsersTap(
+                                adcbt: adminCbt, userType: adminCbt.usertype!,
+                              ),
                               TasksTap(
                                 adcbt: adminCbt,
                               ),

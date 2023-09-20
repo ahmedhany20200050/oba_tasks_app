@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
           create: (context) => LoginCubitCubit(),
         ),
         BlocProvider(
-          create: (context) => AdminViewCubit()..adminAllTasks(),
+          create: (context) => AdminViewCubit()..adminAllTasks()..adminAllDeparts(),
         ),
         BlocProvider(
           create: (context) => EmployeeViewCubit()..employeeAllTasks(),

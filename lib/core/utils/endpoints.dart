@@ -10,6 +10,7 @@ class EndPoints {
   static String allDepsEndpoint = '/department/index';
   static String allUsersEndpoint = '/user/index';
   static String allTasksEndpoint = '/task/index';
+  static String allDepssEndpoint = '/department/index';
   static String allEmployeesEndpoint = '/user/show-employees';
   static String taskStoreEndpoint = '/task/store';
 }
