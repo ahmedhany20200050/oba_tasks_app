@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/admin_view_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/tasks_view.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
+import 'package:tasks_app_eraasoft/core/app_styles.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
 class TasksTap extends StatelessWidget {
-  const TasksTap({super.key});
+  const TasksTap({super.key, required this.adcbt});
+  final AdminViewCubit adcbt;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class TasksTap extends StatelessWidget {
           children: [
             CalendarTimeline(
               initialDate: DateTime.now(),
-              firstDate: DateTime(2020, 4, 20),
+              firstDate: DateTime(2020, 1, 1),
               lastDate: DateTime(2025, 12, 31),
               onDateSelected: (date) {},
               monthColor: AppColors.lightprimaryswatch,
@@ -29,8 +32,23 @@ class TasksTap extends StatelessWidget {
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 5,
-              itemBuilder: (context, index) => const TasksView(),
+              itemCount: adcbt.listOfTasks.length,
+              itemBuilder: (context, index) => adcbt.listOfTasks.isEmpty
+                  ? Center(
+                      child: Text(
+                        'No Tasks to show yet.',
+                        style: AppStyles.textStyle16dark025w700,
+                      ),
+                    )
+                  : adcbt.listOfTasks.length == 1
+                      ? TasksView(
+                          taskModel: adcbt.listOfTasks[0],
+                          admincbt: adcbt,
+                        )
+                      : TasksView(
+                          taskModel: adcbt.listOfTasks[index],
+                          admincbt: adcbt,
+                        ),
               separatorBuilder: (context, index) =>
                   SizedBox(height: 20 * SizeConfig.verticalBlock),
             ),

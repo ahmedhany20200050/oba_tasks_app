@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/admin_view_cubit.dart';
+import 'package:tasks_app_eraasoft/Features/employee_view/data/models/task_model.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/app_styles.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
 class TasksView extends StatelessWidget {
-  const TasksView({super.key});
+  const TasksView({super.key, required this.admincbt, required this.taskModel});
+  final AdminViewCubit admincbt;
+  final TaskModel taskModel;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +27,19 @@ class TasksView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "NEW",
+                  taskModel.status!.toUpperCase(),
                   style: AppStyles.textStyle16dark025w700.copyWith(
-                    color: AppColors.primaryswatch,
+                    color: taskModel.status!.contains('ne')
+                        ? AppColors.primaryswatch
+                        : taskModel.status!.contains('process')
+                            ? Colors.amber
+                            : taskModel.status!.contains('not')
+                                ? Colors.cyan
+                                : taskModel.status!.contains('complet')
+                                    ? Colors.green
+                                    : taskModel.status!.contains('expi')
+                                        ? Colors.red
+                                        : Colors.grey,
                     fontWeight: FontWeight.w400,
                     letterSpacing: 0.44,
                   ),
@@ -42,6 +56,7 @@ class TasksView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
+                          width: 250 * SizeConfig.horizontalBlock,
                           padding: EdgeInsets.only(
                               left: 10 * SizeConfig.horizontalBlock),
                           height: 52 * SizeConfig.verticalBlock,
@@ -54,23 +69,28 @@ class TasksView extends StatelessWidget {
                             ),
                           ),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Create a High-Intensity Interval...',
+                                taskModel.name!,
                                 style:
                                     AppStyles.textStyle16dark025w700.copyWith(
                                   letterSpacing: 0.44,
                                 ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
                               const Spacer(),
                               Text(
-                                'Design a 20-minute HIIT workout routine.',
+                                taskModel.description!,
                                 style:
                                     AppStyles.textStyle12light015w400.copyWith(
                                   letterSpacing: 0.44,
                                   color: AppColors.lightprimaryswatch
                                       .withOpacity(0.6),
                                 ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ],
                           ),
@@ -92,7 +112,7 @@ class TasksView extends StatelessWidget {
                         ),
                         SizedBox(width: 10 * SizeConfig.horizontalBlock),
                         Text(
-                          'starts 12/9/2023 - ends 16/9/2023',
+                          'starts ${taskModel.startDate} - ends ${taskModel.endDate}',
                           style: AppStyles.textStyle16dark025w700.copyWith(
                             fontSize: 12 * SizeConfig.textRatio,
                           ),

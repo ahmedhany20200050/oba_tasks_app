@@ -12,9 +12,9 @@ import 'package:tasks_app_eraasoft/Features/update_department/presentation/mange
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/widgets/update_dep_screen.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/manger/cubit/update_user_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/views/widgets/update_user_screen.dart';
-import 'package:tasks_app_eraasoft/Features/employee_view/presentation/manger/cubit/user_tasks_cubit.dart';
+import 'package:tasks_app_eraasoft/Features/employee_view/presentation/manger/cubit/employee_view_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/employee_view/presentation/views/employee_view_screen.dart';
-import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/user_view_cubit.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/admin_view_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/admin_view_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/helpers/cache_helper.dart';
@@ -30,8 +30,12 @@ void main() async {
   SecureStorage.init();
   String? userType = await SecureStorage.getData(key: 'userType');
   String? token = await SecureStorage.getData(key: "token");
+  String? keepMe = await SecureStorage.getData(key: "keepme");
 
-  if (token == null || userType == null) {
+  if (token == null ||
+      userType == null ||
+      keepMe == null ||
+      keepMe.contains('fals')) {
     firstPage = LoginScreen.id;
   } else if (userType.contains('employ')) {
     firstPage = EmployeeViewScreen.id;
@@ -54,10 +58,10 @@ class MyApp extends StatelessWidget {
           create: (context) => LoginCubitCubit(),
         ),
         BlocProvider(
-          create: (context) => UserViewCubit(),
+          create: (context) => AdminViewCubit()..adminAllTasks(),
         ),
         BlocProvider(
-          create: (context) => UserTasksCubit(),
+          create: (context) => EmployeeViewCubit()..employeeAllTasks(),
         ),
         BlocProvider(
           create: (context) => CreateDepCubit(),

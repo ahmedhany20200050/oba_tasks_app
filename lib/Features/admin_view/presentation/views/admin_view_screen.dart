@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasks_app_eraasoft/Features/create_department/presentation/views/widgets/create_dep_screen.dart';
-import 'package:tasks_app_eraasoft/Features/create_user/presentation/views/widgets/create_user_screen.dart';
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/widgets/update_dep_screen.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/views/widgets/update_user_screen.dart';
-import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/user_view_cubit.dart';
-import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/user_view_state.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/admin_view_cubit.dart';
+import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/admin_view_state.dart';
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/userview_appbar.dart';
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/custom_tapbar.dart';
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/tasks_tap.dart';
@@ -40,12 +38,11 @@ class _AdminViewScreenState extends State<AdminViewScreen>
 
   @override
   Widget build(BuildContext context) {
-    var args = ModalRoute.of(context)?.settings.arguments;
-
-    return BlocConsumer<UserViewCubit, UserViewState>(
+    
+    return BlocConsumer<AdminViewCubit, AdminViewStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var userViewCbt = BlocProvider.of<UserViewCubit>(context);
+        var adminCbt = BlocProvider.of<AdminViewCubit>(context);
         return Scaffold(
           key: scaffoldKey,
           drawer: AdminViewDrawer(
@@ -56,7 +53,7 @@ class _AdminViewScreenState extends State<AdminViewScreen>
               Navigator.pushNamed(context, UpdateUserScreen.id);
             },
             logout: () {
-              userViewCbt.logout(context);
+              adminCbt.logout(context);
             },
           ),
           body: Padding(
@@ -65,29 +62,35 @@ class _AdminViewScreenState extends State<AdminViewScreen>
               vertical: 20 * SizeConfig.verticalBlock,
             ),
             child: SafeArea(
-              child: Column(
-                children: [
-                  AdminViewAppBar(
-                    dkey: scaffoldKey,
-                    userType: args.toString(),
-                  ),
-                  SizedBox(
-                    height: 10 * SizeConfig.verticalBlock,
-                  ),
-                  CustomTapBar(
-                    tabController: tabController!,
-                  ),
-                  Expanded(
-                    child: TabBarView(
-                      controller: tabController,
-                      children: const [
-                        UsersTap(),
-                        TasksTap(),
+              child: adminCbt.listOfTasks.isEmpty
+                  ? const Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    )
+                  : Column(
+                      children: [
+                        AdminViewAppBar(
+                          dkey: scaffoldKey,
+                          userType: adminCbt.usertype!,
+                        ),
+                        SizedBox(
+                          height: 10 * SizeConfig.verticalBlock,
+                        ),
+                        CustomTapBar(
+                          tabController: tabController!,
+                        ),
+                        Expanded(
+                          child: TabBarView(
+                            controller: tabController,
+                            children: [
+                              const UsersTap(),
+                              TasksTap(
+                                adcbt: adminCbt,
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                ],
-              ),
             ),
           ),
         );

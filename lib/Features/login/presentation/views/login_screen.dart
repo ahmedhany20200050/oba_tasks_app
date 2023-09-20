@@ -12,6 +12,7 @@ import 'package:tasks_app_eraasoft/Features/employee_view/presentation/views/emp
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/admin_view_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/helpers/custon_snakbar.dart';
+import 'package:tasks_app_eraasoft/core/helpers/secure_storage.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 import '../../../../core/app_styles.dart';
 
@@ -24,6 +25,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool chechbox = false;
   GlobalKey<FormState> formkey = GlobalKey();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -35,15 +37,15 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state.usertype.contains('employ')) {
             Navigator.of(context).pushNamedAndRemoveUntil(
               EmployeeViewScreen.id,
-              
-              (route) => true,
+              (route) => false,
             );
           } else {
             Navigator.of(context).pushNamedAndRemoveUntil(
               AdminViewScreen.id,
-              arguments: state.usertype,
-              (route) => true,
+             
+              (route) => false,
             );
+
           }
           customSnakbar(
             context,
@@ -148,7 +150,21 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               Row(
                                 children: [
-                                  Checkbox(value: false, onChanged: (value) {}),
+                                  Checkbox(
+                                      value: chechbox,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          if (chechbox) {
+                                            chechbox = false;
+                                          } else {
+                                            chechbox = true;
+                                          }
+                                        });
+                                        SecureStorage.writeData(
+                                          key: 'keepme',
+                                          value: chechbox.toString(),
+                                        );
+                                      }),
                                   const Text("Keep me logged in"),
                                 ],
                               ),

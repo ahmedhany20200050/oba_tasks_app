@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
-class UserTasksDrawer extends StatelessWidget {
-  const UserTasksDrawer({super.key, required this.logout});
+class EmployeeDrawer extends StatelessWidget {
+  const EmployeeDrawer({super.key, required this.logout});
 
   final void Function() logout;
 

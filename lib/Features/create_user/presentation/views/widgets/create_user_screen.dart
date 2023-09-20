@@ -293,7 +293,7 @@ class _CreateUSerScreenState extends State<CreateUSerScreen> {
                                 child: Text(
                                   'CREATE',
                                   style: AppStyles.textStyle14,
-                                )),
+                                ),),
                           )
                         ],
                       ),
