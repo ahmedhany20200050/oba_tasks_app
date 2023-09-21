@@ -33,7 +33,6 @@ void main() async {
   String? userType = await SecureStorage.getData(key: 'userType');
   String? token = await SecureStorage.getData(key: "token");
   String? keepMe = await SecureStorage.getData(key: "keepme");
-  print(keepMe);
 
   if (token == null ||
       userType == null ||
@@ -78,7 +77,7 @@ class MyApp extends StatelessWidget {
           create: (context) => CreateTaskCubit()..getAllEmployees(),
         ),
         BlocProvider(
-          create: (context) => UpdateDepCubit()..getAllDepartments(),
+          create: (context) => UpdateDepCubit()..getAllManagers(),
         ),
         BlocProvider(
           create: (context) => UpdateUserCubit()..getAllDeps(),

@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_eraasoft/Features/update_department/data/models/dep_model.dart';
-import 'package:tasks_app_eraasoft/Features/update_user/data/models/user_model.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/manger/cubit/update_user_state.dart';
 import 'package:tasks_app_eraasoft/core/helpers/api.dart';
 import 'package:tasks_app_eraasoft/core/helpers/secure_storage.dart';

@@ -52,6 +52,7 @@ class _EmployeeViewScreenState extends State<EmployeeViewScreen> {
       },
       builder: (context, state) {
         var employeeCbt = BlocProvider.of<EmployeeViewCubit>(context);
+
         return Scaffold(
           key: scaffoldKey,
           drawer: EmployeeDrawer(
@@ -65,7 +66,7 @@ class _EmployeeViewScreenState extends State<EmployeeViewScreen> {
               vertical: 20 * SizeConfig.verticalBlock,
             ),
             child: SafeArea(
-              child: employeeCbt.listOfTasks.isEmpty
+              child: state is! EmployeeGetAllTasks
                   ? const Center(
                       child: CircularProgressIndicator.adaptive(),
                     )

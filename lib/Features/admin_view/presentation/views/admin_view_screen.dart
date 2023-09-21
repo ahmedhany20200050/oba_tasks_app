@@ -67,6 +67,27 @@ class _AdminViewScreenState extends State<AdminViewScreen>
           );
         }
         if (state is AdminDeleteUserFailure) {
+          BlocProvider.of<AdminViewCubit>(context).adminAllDeparts();
+          customSnakbar(
+            context,
+            SnackBar(
+              content: Text(state.errmsg),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+        if (state is AdminDeleteDepSuccess) {
+          BlocProvider.of<AdminViewCubit>(context).adminAllDeparts();
+          customSnakbar(
+            context,
+            const SnackBar(
+              content: Text('Department deleted successfully'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        }
+        if (state is AdminDeleteDepFailure) {
+          BlocProvider.of<AdminViewCubit>(context).adminAllDeparts();
           customSnakbar(
             context,
             SnackBar(
@@ -91,11 +112,8 @@ class _AdminViewScreenState extends State<AdminViewScreen>
               vertical: 20 * SizeConfig.verticalBlock,
             ),
             child: SafeArea(
-              child: adminCbt.listOfTasks.isEmpty && adminCbt.listOfDeps.isEmpty
-                  ? const Center(
-                      child: CircularProgressIndicator.adaptive(),
-                    )
-                  : Column(
+              child: state is AdminGetAllDeps || state is AdminGetAllTasks
+                  ? Column(
                       children: [
                         AdminViewAppBar(
                           dkey: scaffoldKey,
@@ -122,6 +140,9 @@ class _AdminViewScreenState extends State<AdminViewScreen>
                           ),
                         ),
                       ],
+                    )
+                  :const Center(
+                      child: CircularProgressIndicator.adaptive(),
                     ),
             ),
           ),

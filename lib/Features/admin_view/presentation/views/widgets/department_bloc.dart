@@ -5,7 +5,6 @@ import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widget
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/widgets/update_dep_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/app_styles.dart';
-import 'package:tasks_app_eraasoft/core/helpers/secure_storage.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
 class DepartmentSection extends StatelessWidget {
@@ -42,18 +41,48 @@ class DepartmentSection extends StatelessWidget {
               width: 3 * SizeConfig.horizontalBlock,
             ),
             if (userType.contains('adm'))
-              GestureDetector(
-                onTap: () {
-                  SecureStorage.writeData(
-                      key: 'depid', value: depModel.id.toString());
-                  Navigator.pushNamed(context, UpdateDepScreen.id);
+              PopupMenuButton(
+                iconSize: 15,
+                onSelected: (item) {
+                  if (item == 0) {
+                    Navigator.pushNamed(
+                      context,
+                      UpdateDepScreen.id,
+                      arguments: depModel,
+                    );
+                  } else {
+                    adminViewCubit.deleteDep(
+                      depid: depModel.id!.toString(),
+                    );
+                  }
                 },
-                child: Icon(
+                icon: const Icon(
                   Icons.edit_document,
-                  size: 15,
-                  color: AppColors.lightprimaryswatch,
+                  color: AppColors.primaryswatch,
                 ),
+                itemBuilder: (BuildContext context) => [
+                  const PopupMenuItem(
+                    value: 0,
+                    child: Text('Update Department'),
+                  ),
+                  const PopupMenuItem(
+                    value: 1,
+                    child: Text(
+                      'Delete Department',
+                      style: TextStyle(
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                ],
               )
+            // GestureDetector(
+            //   onTap: () {
+
+            //
+            //   },
+            //   child: ,
+            // )
           ],
         ),
         SizedBox(

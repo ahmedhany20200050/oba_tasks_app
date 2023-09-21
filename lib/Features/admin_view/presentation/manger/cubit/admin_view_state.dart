@@ -43,3 +43,12 @@ final class AdminDeleteUserFailure extends AdminViewStates {
 
   AdminDeleteUserFailure({required this.errmsg});
 }
+final class AdminDeleteDepSuccess extends AdminViewStates {}
+
+final class AdminDeleteDepLoading extends AdminViewStates {}
+
+final class AdminDeleteDepFailure extends AdminViewStates {
+  final String errmsg;
+
+  AdminDeleteDepFailure({required this.errmsg});
+}

@@ -58,7 +58,7 @@ class EmployeeViewCubit extends Cubit<EmployeeViewStates> {
     }
   }
 
-  Future logout(context) async {
+   logout(context) async {
     emit(EmployeeLogoutLoading());
     token = await SecureStorage.getData(key: 'token');
     try {
@@ -87,7 +87,7 @@ class EmployeeViewCubit extends Cubit<EmployeeViewStates> {
     }
   }
 
-  Future employeeAllTasks() async {
+   employeeAllTasks() async {
     listOfTasks.clear();
     token = await SecureStorage.getData(key: 'token');
     await Api()

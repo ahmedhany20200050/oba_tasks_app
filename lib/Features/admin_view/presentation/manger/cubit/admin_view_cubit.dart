@@ -15,12 +15,12 @@ class AdminViewCubit extends Cubit<AdminViewStates> {
   List<TaskModel> listOfTasks = [];
   List<AdminDepModel> listOfDeps = [];
 
-  Future deleteTask({required String taskid}) async {
+  deleteTask({required String taskid}) async {
     token = await SecureStorage.getData(key: 'token');
     emit(AdminDeleteTaskLoading());
     await Api()
         .delete(
-      url: EndPoints.baseUrl + EndPoints.taskDeleteEndpoint+taskid,
+      url: EndPoints.baseUrl + EndPoints.taskDeleteEndpoint + taskid,
       token: token,
     )
         .then((value) {
@@ -32,28 +32,49 @@ class AdminViewCubit extends Cubit<AdminViewStates> {
       }
     });
   }
-  Future deleteUser({required String userid}) async {
+
+  deleteUser({required String userid}) async {
     token = await SecureStorage.getData(key: 'token');
     emit(AdminDeleteUserLoading());
     await Api()
         .delete(
-      url: EndPoints.baseUrl + EndPoints.userDeleteEndpoint+userid,
+      url: EndPoints.baseUrl + EndPoints.userDeleteEndpoint + userid,
       token: token,
     )
         .then((value) {
       if (value == 500) {
         SecureStorage.deleteData(key: 'token');
         emit(AdminGetAllTasks(code: value));
-      } else if(value==422){
+      } else if (value == 422) {
         emit(AdminDeleteUserFailure(errmsg: 'You can\'t delete this user.'));
-      }
-       else {
+      } else {
         emit(AdminDeleteUserSuccess());
       }
     });
   }
 
-  Future adminAllTasks() async {
+  deleteDep({required String depid}) async {
+    token = await SecureStorage.getData(key: 'token');
+    emit(AdminDeleteDepLoading());
+    await Api()
+        .delete(
+      url: EndPoints.baseUrl + EndPoints.depDeleteEndpoint + depid,
+      token: token,
+    )
+        .then((value) {
+      if (value == 500) {
+        SecureStorage.deleteData(key: 'token');
+        emit(AdminGetAllTasks(code: value));
+      } else if (value == 422) {
+        emit(AdminDeleteDepFailure(
+            errmsg: 'You can\'t delete this department.'));
+      } else {
+        emit(AdminDeleteDepSuccess());
+      }
+    });
+  }
+
+  adminAllTasks() async {
     listOfTasks.clear();
     usertype = await SecureStorage.getData(key: 'userType');
     token = await SecureStorage.getData(key: 'token');
@@ -75,7 +96,7 @@ class AdminViewCubit extends Cubit<AdminViewStates> {
     });
   }
 
-  Future adminAllDeparts() async {
+  adminAllDeparts() async {
     listOfDeps.clear();
     usertype = await SecureStorage.getData(key: 'userType');
     token = await SecureStorage.getData(key: 'token');
@@ -97,7 +118,7 @@ class AdminViewCubit extends Cubit<AdminViewStates> {
     });
   }
 
-  Future logout(context) async {
+  logout(context) async {
     emit(AdminLogoutLoading());
     token = await SecureStorage.getData(key: 'token');
 

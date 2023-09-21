@@ -7,8 +7,8 @@ import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 
 class UpdateDepCubit extends Cubit<UpdateDepState> {
   UpdateDepCubit() : super(UpdateDepInitial());
-  List<DepModel> listOfDeps = [];
-  List<int> depsIdList = [];
+  List<DepModel> listOfmanagers = [];
+  List<int> managerssIdList = [];
   String? token;
   String? depID;
 
@@ -34,20 +34,20 @@ class UpdateDepCubit extends Cubit<UpdateDepState> {
     }
   }
 
-  getAllDepartments() async {
-    listOfDeps.clear();
-    depsIdList.clear();
-    depID = await SecureStorage.getData(key: 'depid');
+  getAllManagers() async {
+    listOfmanagers.clear();
+    managerssIdList.clear();
+   
     token = await SecureStorage.getData(key: 'token');
     var alldepsdata = await Api().get(
-      url: EndPoints.baseUrl + EndPoints.allDepsEndpoint,
+      url: EndPoints.baseUrl + EndPoints.allManagersEndpoint,
       token: token,
     );
     for (var element in alldepsdata['data']) {
-      listOfDeps.add(DepModel.fromJson(element));
+      listOfmanagers.add(DepModel.fromJson(element));
     }
-    for (var element in listOfDeps) {
-      depsIdList.add(element.id!);
+    for (var element in listOfmanagers) {
+      managerssIdList.add(element.id!);
     }
   }
 }
