@@ -95,6 +95,7 @@ class _UpdateUserScreenState extends State<UpdateUserScreen> {
                                 height: 20 * SizeConfig.verticalBlock,
                               ),
                               TextFormField(
+                                initialValue: user.name,
                                 decoration: const InputDecoration(
                                   hintText: 'Name',
                                   hintStyle: TextStyle(color: Colors.black),
@@ -119,6 +120,7 @@ class _UpdateUserScreenState extends State<UpdateUserScreen> {
                                 height: 20 * SizeConfig.verticalBlock,
                               ),
                               TextFormField(
+                                initialValue: user.email,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: const InputDecoration(
                                   hintText: 'Email',
@@ -145,6 +147,7 @@ class _UpdateUserScreenState extends State<UpdateUserScreen> {
                                 height: 20 * SizeConfig.verticalBlock,
                               ),
                               TextFormField(
+                                initialValue: user.phone.toString(),
                                 keyboardType: TextInputType.phone,
                                 decoration: const InputDecoration(
                                   hintText: 'Phone',
@@ -187,7 +190,7 @@ class _UpdateUserScreenState extends State<UpdateUserScreen> {
                                 // ignore: body_might_complete_normally_nullable
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Password must be not empty';
+                                    return 'Password must not be empty';
                                   } else if (value.length < 6) {
                                     return 'Password must be more than 6 characters';
                                   }
@@ -208,6 +211,7 @@ class _UpdateUserScreenState extends State<UpdateUserScreen> {
                                 height: 10 * SizeConfig.verticalBlock,
                               ),
                               DropdownSearch<int>(
+                                selectedItem: user.departmentId,
                                 items: updateUSerCbt.depsIdList,
                                 onChanged: (value) {
                                   selectedDepId = value;

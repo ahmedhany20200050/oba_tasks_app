@@ -76,13 +76,6 @@ class DepartmentSection extends StatelessWidget {
                   ),
                 ],
               )
-            // GestureDetector(
-            //   onTap: () {
-
-            //
-            //   },
-            //   child: ,
-            // )
           ],
         ),
         SizedBox(
@@ -94,7 +87,7 @@ class DepartmentSection extends StatelessWidget {
           itemCount: depModel.employees!.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: userType.contains('adm') ? 8 / 9 : 8 / 8.2,
+            childAspectRatio: userType.contains('adm') ? 8 / 9.2 : 8 / 8.2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
           ),

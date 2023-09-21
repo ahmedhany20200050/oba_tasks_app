@@ -28,7 +28,7 @@ class TasksTap extends StatelessWidget {
               activeDayColor: Colors.white,
               activeBackgroundDayColor: AppColors.primaryswatch,
             ),
-            SizedBox(height: 20 * SizeConfig.verticalBlock),
+            SizedBox(height: 10 * SizeConfig.verticalBlock),
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
