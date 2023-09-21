@@ -9,5 +9,6 @@ class EndPoints {
   static String addTasksEndpoint = '/task/store';
   static String updateTasksEndpoint(int id) => '/task/update/$id';
   static String getEmpEndpoint = '/user/index';
+  static String addUserEndpoint = '/user/store';
 
 }
