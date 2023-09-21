@@ -4,7 +4,6 @@ import 'package:tasks_app_eraasoft/Features/create_user/presentation/manger/cubi
 import 'package:tasks_app_eraasoft/Features/create_user/presentation/manger/cubit/create_user_state.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/login_cubit_state.dart';
-import 'package:tasks_app_eraasoft/Features/update_user/presentation/views/widgets/update_user_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_styles.dart';
 import 'package:tasks_app_eraasoft/core/helpers/custon_snakbar.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';

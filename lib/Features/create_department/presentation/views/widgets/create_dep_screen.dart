@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_eraasoft/Features/create_department/presentation/manger/cubit/create_dep_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/create_department/presentation/manger/cubit/create_dep_state.dart';
-import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/widgets/update_dep_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_styles.dart';
 import 'package:tasks_app_eraasoft/core/helpers/custon_snakbar.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
