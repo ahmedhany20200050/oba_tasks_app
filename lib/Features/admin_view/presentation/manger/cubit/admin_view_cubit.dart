@@ -15,7 +15,46 @@ class AdminViewCubit extends Cubit<AdminViewStates> {
   List<TaskModel> listOfTasks = [];
   List<AdminDepModel> listOfDeps = [];
 
+  Future deleteTask({required String taskid}) async {
+    token = await SecureStorage.getData(key: 'token');
+    emit(AdminDeleteTaskLoading());
+    await Api()
+        .delete(
+      url: EndPoints.baseUrl + EndPoints.taskDeleteEndpoint+taskid,
+      token: token,
+    )
+        .then((value) {
+      if (value == 500) {
+        SecureStorage.deleteData(key: 'token');
+        emit(AdminGetAllTasks(code: value));
+      } else {
+        emit(AdminDeleteTaskSuccess());
+      }
+    });
+  }
+  Future deleteUser({required String userid}) async {
+    token = await SecureStorage.getData(key: 'token');
+    emit(AdminDeleteUserLoading());
+    await Api()
+        .delete(
+      url: EndPoints.baseUrl + EndPoints.userDeleteEndpoint+userid,
+      token: token,
+    )
+        .then((value) {
+      if (value == 500) {
+        SecureStorage.deleteData(key: 'token');
+        emit(AdminGetAllTasks(code: value));
+      } else if(value==422){
+        emit(AdminDeleteUserFailure(errmsg: 'You can\'t delete this user.'));
+      }
+       else {
+        emit(AdminDeleteUserSuccess());
+      }
+    });
+  }
+
   Future adminAllTasks() async {
+    listOfTasks.clear();
     usertype = await SecureStorage.getData(key: 'userType');
     token = await SecureStorage.getData(key: 'token');
     await Api()
@@ -37,11 +76,12 @@ class AdminViewCubit extends Cubit<AdminViewStates> {
   }
 
   Future adminAllDeparts() async {
+    listOfDeps.clear();
     usertype = await SecureStorage.getData(key: 'userType');
     token = await SecureStorage.getData(key: 'token');
     await Api()
         .get(
-      url: EndPoints.baseUrl + EndPoints.allDepssEndpoint,
+      url: EndPoints.baseUrl + EndPoints.allDepsEndpoint,
       token: token,
     )
         .then((value) {

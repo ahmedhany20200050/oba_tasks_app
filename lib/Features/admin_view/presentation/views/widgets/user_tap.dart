@@ -26,9 +26,15 @@ class UsersTap extends StatelessWidget {
                 ),
               )
             : adcbt.listOfDeps.length == 1
-                ? DepartmentSection(depModel: adcbt.listOfDeps[0], userType: userType,)
+                ? DepartmentSection(
+                    depModel: adcbt.listOfDeps[0],
+                    userType: userType,
+                    adminViewCubit: adcbt,
+                  )
                 : DepartmentSection(
-                    depModel: adcbt.listOfDeps[index], userType: userType,
+                    depModel: adcbt.listOfDeps[index],
+                    userType: userType,
+                    adminViewCubit: adcbt,
                   ),
         separatorBuilder: (context, index) => SizedBox(
           height: 20 * SizeConfig.verticalBlock,

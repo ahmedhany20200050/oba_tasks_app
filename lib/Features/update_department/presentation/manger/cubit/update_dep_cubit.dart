@@ -10,6 +10,7 @@ class UpdateDepCubit extends Cubit<UpdateDepState> {
   List<DepModel> listOfDeps = [];
   List<int> depsIdList = [];
   String? token;
+  String? depID;
 
   Future updateDepartment({
     required String depId,
@@ -34,6 +35,9 @@ class UpdateDepCubit extends Cubit<UpdateDepState> {
   }
 
   getAllDepartments() async {
+    listOfDeps.clear();
+    depsIdList.clear();
+    depID = await SecureStorage.getData(key: 'depid');
     token = await SecureStorage.getData(key: 'token');
     var alldepsdata = await Api().get(
       url: EndPoints.baseUrl + EndPoints.allDepsEndpoint,

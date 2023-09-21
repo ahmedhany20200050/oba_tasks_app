@@ -112,6 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 TextFormField(
                                   controller: email,
+                                  keyboardType: TextInputType.emailAddress,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Email must not be empty.';

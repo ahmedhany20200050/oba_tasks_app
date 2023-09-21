@@ -24,7 +24,7 @@ class _CreateDepScreenState extends State<CreateDepScreen> {
     return BlocConsumer<CreateDepCubit, CreateDepState>(
       listener: (context, state) {
         if (state is CreateDepSuccess) {
-          Navigator.of(context).pushNamed(UpdateDepScreen.id);
+          Navigator.pop(context);
           customSnakbar(
             context,
             const SnackBar(

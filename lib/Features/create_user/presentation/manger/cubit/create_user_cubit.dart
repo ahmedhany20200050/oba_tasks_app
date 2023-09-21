@@ -14,7 +14,6 @@ class CreateUserCubit extends Cubit<CreateUserState> {
     required String phone,
     required String password,
     required String userType,
-    required String depId,
   }) async {
     emit(CreateUserLoading());
     token = await SecureStorage.getData(key: 'token');
@@ -27,7 +26,6 @@ class CreateUserCubit extends Cubit<CreateUserState> {
           'phone': phone,
           'password': password,
           'user_type': userType,
-          'department_id': depId,
         },
         token: token,
       );

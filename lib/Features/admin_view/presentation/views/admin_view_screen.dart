@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/widgets/update_dep_screen.dart';
-import 'package:tasks_app_eraasoft/Features/update_user/presentation/views/widgets/update_user_screen.dart';
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/admin_view_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/admin_view_state.dart';
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/userview_appbar.dart';
@@ -9,6 +7,8 @@ import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widget
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/tasks_tap.dart';
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/the_drawer.dart';
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/views/widgets/user_tap.dart';
+import 'package:tasks_app_eraasoft/Features/login/presentation/views/login_screen.dart';
+import 'package:tasks_app_eraasoft/core/helpers/custon_snakbar.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
 
 class AdminViewScreen extends StatefulWidget {
@@ -39,15 +39,48 @@ class _AdminViewScreenState extends State<AdminViewScreen>
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AdminViewCubit, AdminViewStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is AdminGetAllDeps) {
+          if (state.code == 500) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, LoginScreen.id, (route) => false);
+          }
+        }
+        if (state is AdminDeleteTaskSuccess) {
+          BlocProvider.of<AdminViewCubit>(context).adminAllTasks();
+          customSnakbar(
+            context,
+            const SnackBar(
+              content: Text('Task deleted successfully'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        }
+        if (state is AdminDeleteUserSuccess) {
+          BlocProvider.of<AdminViewCubit>(context).adminAllDeparts();
+          customSnakbar(
+            context,
+            const SnackBar(
+              content: Text('User deleted successfully'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        }
+        if (state is AdminDeleteUserFailure) {
+          customSnakbar(
+            context,
+            SnackBar(
+              content: Text(state.errmsg),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         var adminCbt = BlocProvider.of<AdminViewCubit>(context);
-        // print(adminCbt.listOfTasks.length);
         return Scaffold(
           key: scaffoldKey,
           drawer: AdminViewDrawer(
-            
-            
             logout: () {
               adminCbt.logout(context);
             },
@@ -58,7 +91,7 @@ class _AdminViewScreenState extends State<AdminViewScreen>
               vertical: 20 * SizeConfig.verticalBlock,
             ),
             child: SafeArea(
-              child: adminCbt.listOfTasks.isEmpty 
+              child: adminCbt.listOfTasks.isEmpty && adminCbt.listOfDeps.isEmpty
                   ? const Center(
                       child: CircularProgressIndicator.adaptive(),
                     )
@@ -79,7 +112,8 @@ class _AdminViewScreenState extends State<AdminViewScreen>
                             controller: tabController,
                             children: [
                               UsersTap(
-                                adcbt: adminCbt, userType: adminCbt.usertype!,
+                                adcbt: adminCbt,
+                                userType: adminCbt.usertype!,
                               ),
                               TasksTap(
                                 adcbt: adminCbt,

@@ -29,7 +29,6 @@ class EmployeeViewCubit extends Cubit<EmployeeViewStates> {
     required String employID,
     required String depID,
   }) async {
-    listOfTasks.clear();
     emit(EmployeeUpdateTaskLoading());
     token = await SecureStorage.getData(key: 'token');
     try {
@@ -89,6 +88,7 @@ class EmployeeViewCubit extends Cubit<EmployeeViewStates> {
   }
 
   Future employeeAllTasks() async {
+    listOfTasks.clear();
     token = await SecureStorage.getData(key: 'token');
     await Api()
         .get(

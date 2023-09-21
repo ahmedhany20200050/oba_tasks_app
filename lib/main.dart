@@ -10,6 +10,8 @@ import 'package:tasks_app_eraasoft/Features/login/presentation/manger/cubit/logi
 import 'package:tasks_app_eraasoft/Features/login/presentation/views/login_screen.dart';
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/manger/cubit/update_dep_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/update_department/presentation/views/widgets/update_dep_screen.dart';
+import 'package:tasks_app_eraasoft/Features/update_task/presentation/manger/cubit/update_task_cubit.dart';
+import 'package:tasks_app_eraasoft/Features/update_task/presentation/views/update_task_screen.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/manger/cubit/update_user_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/views/widgets/update_user_screen.dart';
 import 'package:tasks_app_eraasoft/Features/employee_view/presentation/manger/cubit/employee_view_cubit.dart';
@@ -31,6 +33,7 @@ void main() async {
   String? userType = await SecureStorage.getData(key: 'userType');
   String? token = await SecureStorage.getData(key: "token");
   String? keepMe = await SecureStorage.getData(key: "keepme");
+  print(keepMe);
 
   if (token == null ||
       userType == null ||
@@ -58,7 +61,9 @@ class MyApp extends StatelessWidget {
           create: (context) => LoginCubitCubit(),
         ),
         BlocProvider(
-          create: (context) => AdminViewCubit()..adminAllTasks()..adminAllDeparts(),
+          create: (context) => AdminViewCubit()
+            ..adminAllTasks()
+            ..adminAllDeparts(),
         ),
         BlocProvider(
           create: (context) => EmployeeViewCubit()..employeeAllTasks(),
@@ -76,7 +81,12 @@ class MyApp extends StatelessWidget {
           create: (context) => UpdateDepCubit()..getAllDepartments(),
         ),
         BlocProvider(
-          create: (context) => UpdateUserCubit()..getAllUsers(),
+          create: (context) => UpdateUserCubit()..getAllDeps(),
+        ),
+        BlocProvider(
+          create: (context) => UpdateTaskCubit()
+            ..allDepartments()
+            ..allEmployees(),
         ),
       ],
       child: MaterialApp(
@@ -88,13 +98,14 @@ class MyApp extends StatelessWidget {
         initialRoute: firstPage,
         routes: {
           LoginScreen.id: (context) => const LoginScreen(),
+          AdminViewScreen.id: (context) => const AdminViewScreen(),
+          EmployeeViewScreen.id: (context) => const EmployeeViewScreen(),
           CreateDepScreen.id: (context) => const CreateDepScreen(),
           CreateUSerScreen.id: (context) => const CreateUSerScreen(),
+          CreateTaskScreen.id: (context) => const CreateTaskScreen(),
           UpdateDepScreen.id: (context) => const UpdateDepScreen(),
           UpdateUserScreen.id: (context) => const UpdateUserScreen(),
-          EmployeeViewScreen.id: (context) => const EmployeeViewScreen(),
-          AdminViewScreen.id: (context) => const AdminViewScreen(),
-          CreateTaskScreen.id: (context) => const CreateTaskScreen(),
+          UpdateTaskScreen.id: (context) => const UpdateTaskScreen(),
         },
       ),
     );

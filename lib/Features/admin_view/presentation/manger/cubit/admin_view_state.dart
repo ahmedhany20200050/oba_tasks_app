@@ -23,3 +23,23 @@ final class AdminLogoutFailure extends AdminViewStates {
 
   AdminLogoutFailure({required this.errmsg});
 }
+
+final class AdminDeleteTaskSuccess extends AdminViewStates {}
+
+final class AdminDeleteTaskLoading extends AdminViewStates {}
+
+final class AdminDeleteTaskFailure extends AdminViewStates {
+  final String errmsg;
+
+  AdminDeleteTaskFailure({required this.errmsg});
+}
+
+final class AdminDeleteUserSuccess extends AdminViewStates {}
+
+final class AdminDeleteUserLoading extends AdminViewStates {}
+
+final class AdminDeleteUserFailure extends AdminViewStates {
+  final String errmsg;
+
+  AdminDeleteUserFailure({required this.errmsg});
+}

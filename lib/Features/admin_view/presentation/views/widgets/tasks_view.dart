@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_app_eraasoft/Features/admin_view/presentation/manger/cubit/admin_view_cubit.dart';
 import 'package:tasks_app_eraasoft/Features/employee_view/data/models/task_model.dart';
+import 'package:tasks_app_eraasoft/Features/update_task/presentation/views/update_task_screen.dart';
 import 'package:tasks_app_eraasoft/core/app_colors.dart';
 import 'package:tasks_app_eraasoft/core/app_styles.dart';
 import 'package:tasks_app_eraasoft/core/utils/size_config.dart';
@@ -54,9 +55,10 @@ class TasksView extends StatelessWidget {
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: 250 * SizeConfig.horizontalBlock,
+                          width: 242 * SizeConfig.horizontalBlock,
                           padding: EdgeInsets.only(
                               left: 10 * SizeConfig.horizontalBlock),
                           height: 52 * SizeConfig.verticalBlock,
@@ -95,10 +97,40 @@ class TasksView extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const Spacer(),
-                        Icon(
-                          Icons.more_vert_rounded,
-                          color: AppColors.lightprimaryswatch.withOpacity(0.6),
+                        PopupMenuButton(
+                          onSelected: (item) {
+                            if (item == 0) {
+                              Navigator.pushNamed(
+                                context,
+                                UpdateTaskScreen.id,
+                                arguments: taskModel,
+                              );
+                            } else {
+                              admincbt.deleteTask(
+                                taskid: taskModel.id!.toString(),
+                              );
+                            }
+                          },
+                          icon: Icon(
+                            Icons.more_vert_rounded,
+                            color:
+                                AppColors.lightprimaryswatch.withOpacity(0.6),
+                          ),
+                          itemBuilder: (BuildContext context) => [
+                            const PopupMenuItem(
+                              value: 0,
+                              child: Text('Update Task'),
+                            ),
+                            const PopupMenuItem(
+                              value: 1,
+                              child: Text(
+                                'Delete Task',
+                                style: TextStyle(
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

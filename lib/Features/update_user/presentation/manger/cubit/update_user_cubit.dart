@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasks_app_eraasoft/Features/update_department/data/models/dep_model.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/data/models/user_model.dart';
 import 'package:tasks_app_eraasoft/Features/update_user/presentation/manger/cubit/update_user_state.dart';
 import 'package:tasks_app_eraasoft/core/helpers/api.dart';
@@ -7,9 +8,10 @@ import 'package:tasks_app_eraasoft/core/utils/endpoints.dart';
 
 class UpdateUserCubit extends Cubit<UpdateUserState> {
   UpdateUserCubit() : super(UpdateUserInitial());
-  List<UserModel> listOfUsers = [];
-  List<int> usersIdList = [];
+  List<DepModel> listOfDeps = [];
+  List<int> depsIdList = [];
   String? token;
+  String? userID;
 
   Future updateUser({
     required String userId,
@@ -24,7 +26,8 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
     emit(UpdateUserLoading());
     token = await SecureStorage.getData(key: 'token');
     try {
-      await Api().post(
+      await Api()
+          .post(
         url: EndPoints.baseUrl + EndPoints.userUpdateEndpoint + userId,
         body: {
           'name': name,
@@ -36,24 +39,33 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
           'department_id': depId,
         },
         token: token,
-      );
+      )
+          .then((value) {
+        if (value == 422) {
+          emit(UpdateUserFailure(
+              errmsg: 'The email or the phone have already been taken.'));
+        }
+      });
       emit(UpdateUserSuccess());
     } on Exception catch (e) {
       emit(UpdateUserFailure(errmsg: e.toString()));
     }
   }
 
-  getAllUsers() async {
+  getAllDeps() async {
+    listOfDeps.clear();
+    depsIdList.clear();
+    userID = await SecureStorage.getData(key: 'userid');
     token = await SecureStorage.getData(key: 'token');
     var alldepsdata = await Api().get(
-      url: EndPoints.baseUrl + EndPoints.allUsersEndpoint,
+      url: EndPoints.baseUrl + EndPoints.allDepsEndpoint,
       token: token,
     );
     for (var element in alldepsdata['data']) {
-      listOfUsers.add(UserModel.fromJson(element));
+      listOfDeps.add(DepModel.fromJson(element));
     }
-    for (var element in listOfUsers) {
-      usersIdList.add(element.id!);
+    for (var element in listOfDeps) {
+      depsIdList.add(element.id!);
     }
   }
 }

@@ -103,7 +103,7 @@ class _UpdateDepScreenState extends State<UpdateDepScreen> {
                           // ignore: body_might_complete_normally_nullable
                           validator: (value) {
                             if (value == null) {
-                              return 'Department ID must not be choosen';
+                              return 'Department ID must be choosen';
                             }
                           },
                         ),
@@ -165,7 +165,7 @@ class _UpdateDepScreenState extends State<UpdateDepScreen> {
                                 if (formkey.currentState!.validate()) {
                                   BlocProvider.of<UpdateDepCubit>(context)
                                       .updateDepartment(
-                                    depId: selectedDepId.toString(),
+                                    depId: updateDepCbt.depID.toString(),
                                     depName: namecon.text,
                                     managerId: managerIdcon.text,
                                   );
