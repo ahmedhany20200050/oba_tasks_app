@@ -127,7 +127,7 @@ class _UpdateDepScreenState extends State<UpdateDepScreen> {
                                 height: 10 * SizeConfig.verticalBlock,
                               ),
                               DropdownSearch<int>(
-                                selectedItem: depModel.manager!.id,
+                                selectedItem: depModel.manager?.id,
                                 items: updateDepCbt.managerssIdList,
                                 onChanged: (value) {
                                   selectedmanaId = value;
