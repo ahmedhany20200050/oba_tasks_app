@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_app_eraasoft/Features/admin_and_manager/presentation/views/admin_and_manager_screen.dart';
+import 'package:tasks_app_eraasoft/Features/departmentForms/presentation/views/delete_department.dart';
 import 'package:tasks_app_eraasoft/Features/new_user/presentation/views/new_user_screen.dart';
 import 'package:tasks_app_eraasoft/Features/tasks_forms/presentation/views/add_tasks.dart';
 
@@ -33,6 +34,11 @@ class CustomDrawer extends StatelessWidget {
                 Navigator.of(context).pushNamed(UpdateDepartmentScreen.id);
               },
               child: const Text("Update Department")),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(DeleteDepartmentScreen.id);
+              },
+              child: const Text("Delete Department")),
           TextButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(AdminAndManagerScreen.id);

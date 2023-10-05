@@ -9,8 +9,6 @@ class AppStyles{
     fontSize: 34*SizeConfig.textRatio,
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w400,
-    height: 0.03*SizeConfig.textRatio,
-    letterSpacing: 0.25*SizeConfig.textRatio,
   );
   static TextStyle descriptionStyle= TextStyle(
     color:const Color(0xFF7B808A),
@@ -208,6 +206,13 @@ class AppStyles{
     color: const Color(0xFF091E4A),
     fontSize: 34 * SizeConfig.textRatio,
     fontWeight: FontWeight.w400,
+  );
+
+  static final TextStyle miniTextStyle=TextStyle(
+    color: const Color(0xFF7B808A),
+    fontSize: 8*SizeConfig.textRatio,
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w700,
   );
 
 }

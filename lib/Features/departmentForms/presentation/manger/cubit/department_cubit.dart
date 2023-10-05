@@ -57,6 +57,23 @@ class DepartmentCubitCubit extends Cubit<DepartmentCubitState> {
     }
   }
 
+  Future deleteDept({required int deptID}) async {
+    emit(DeleteDepartmentCubitLoading());
+    String? token = await storage.read(key: "token");
+    try {
+      var data = await Api().delete(
+        url: EndPoints.baseUrl + EndPoints.deleteDepartEndpoint(deptID),
+        token: token,
+      );
+      emit(DeleteDepartmentCubitSuccess());
+      if (kDebugMode) {
+        print(data.toString());
+      }
+    } on Exception catch (e) {
+      emit(DeleteDepartmentCubitFailure(errmsg: e.toString()));
+    }
+  }
+
   Future getDept()async{
     emit(GetDepartmentCubitLoading());
     String? token = await storage.read(key: "token");

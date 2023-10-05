@@ -5,6 +5,7 @@ class EndPoints {
   static String addDepartEndpoint = '/department/store';
   //todo: make the update work
   static String updateDepartEndpoint(int id) => '/department/update/$id';
+  static String deleteDepartEndpoint(int id) => '/department/delete/$id';
   static String getDepartEndpoint = '/department/index';
   static String addTasksEndpoint = '/task/store';
   static String updateTasksEndpoint(int id) => '/task/update/$id';
